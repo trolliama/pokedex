@@ -5,10 +5,20 @@
  */
 package Pokedex;
 
+import javax.swing.*;
+
 /**
  *
  * @author caio
  */
-public class TelaInicial {
+public class TelaInicial extends JFrame{
     
+    public TelaInicial(){
+        super("Pokédex");
+        setVisible(true);
+    }
+    
+    public void listaPokemons(){
+        
+    }
 }
