@@ -69,20 +69,20 @@ public class Pokemon {
 	public String[] getTipo() {
 		return tipo;
 	}
-	public void setTipo(String tipo) {
+	public void setTipo(String[] tipo) {
 		
-		this.tipo = tipo.split(",");
+		this.tipo = tipo;
 	}
 	public String[] getHabilidades() {
 		return habilidades;
 	}
-	public void setHabilidades(String habilidades) {
-		this.habilidades = habilidades.split(",");
+	public void setHabilidades(String[] habilidades) {
+		this.habilidades = habilidades;
 	}
 	public String[] getFraquezas() {
 		return fraquezas;
 	}
-	public void setFraquezas(String fraquezas) {
-		this.fraquezas = fraquezas.split(",");
+	public void setFraquezas(String[] fraquezas) {
+		this.fraquezas = fraquezas;
 	}
 }
