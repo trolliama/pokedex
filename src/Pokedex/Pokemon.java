@@ -2,7 +2,7 @@ package Pokedex;
 
 public class Pokemon {
 	private int id, idEvolucao, ataqueSp, defesa, ataque, vida, defesaSp, velocidade;
-	private String nome;
+	private String nome, descricao;
 	private String[] tipo, habilidades, fraquezas;
 	private char sexo;
 	
@@ -69,20 +69,26 @@ public class Pokemon {
 	public String[] getTipo() {
 		return tipo;
 	}
-	public void setTipo(String[] tipo) {
+	public void setTipo(String tipo) {
 		
-		this.tipo = tipo;
+		this.tipo = tipo.split(",");
 	}
 	public String[] getHabilidades() {
 		return habilidades;
 	}
-	public void setHabilidades(String[] habilidades) {
-		this.habilidades = habilidades;
+	public void setHabilidades(String habilidades) {
+		this.habilidades = habilidades.split(",");
 	}
 	public String[] getFraquezas() {
 		return fraquezas;
 	}
-	public void setFraquezas(String[] fraquezas) {
-		this.fraquezas = fraquezas;
+	public void setFraquezas(String fraquezas) {
+		this.fraquezas = fraquezas.split(",");
+	}
+	public String getDescricao() {
+		return descricao;
+	}
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
 	}
 }
