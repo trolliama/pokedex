@@ -1,11 +1,20 @@
 package Pokedex;
 
+import java.util.ArrayList;
+
 public class Pokemon {
 	private int id, idEvolucao, ataqueSp, defesa, ataque, vida, defesaSp, velocidade;
 	private String nome, descricao;
-	private String[] tipo, habilidades, fraquezas;
+	private	ArrayList<String> tipos, habilidades, fraquezas;
 	private char sexo;
 	
+	public Pokemon() {
+
+		this.fraquezas = new ArrayList<String>();
+		this.tipos = new ArrayList<String>();
+		this.habilidades = new ArrayList<String>();
+		
+	}
 	public int getId() {
 		return id;
 	}
@@ -66,24 +75,23 @@ public class Pokemon {
 	public void setSexo(char sexo) {
 		this.sexo = sexo;
 	}
-	public String[] getTipo() {
-		return tipo;
+	public ArrayList<String> getTipos() {
+		return this.tipos;
 	}
-	public void setTipo(String tipo) {
-		
-		this.tipo = tipo.split(",");
+	public void setTipos(String tipo) {
+		this.tipos.add(tipo);
 	}
-	public String[] getHabilidades() {
+	public ArrayList<String> getHabilidades() {
 		return habilidades;
 	}
-	public void setHabilidades(String habilidades) {
-		this.habilidades = habilidades.split(",");
+	public void setHabilidades(String habilidade) {
+		this.habilidades.add(habilidade);
 	}
-	public String[] getFraquezas() {
+	public ArrayList<String> getFraquezas() {
 		return fraquezas;
 	}
-	public void setFraquezas(String fraquezas) {
-		this.fraquezas = fraquezas.split(",");
+	public void setFraquezas(String fraqueza) {
+		this.fraquezas.add(fraqueza);
 	}
 	public String getDescricao() {
 		return descricao;

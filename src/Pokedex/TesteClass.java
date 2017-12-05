@@ -12,6 +12,8 @@ public class TesteClass {
 		System.out.println(tp);
 		String hb = new HabilidadesDAO().selecionaFromHabilidadesById(1);
 		System.out.println(hb);
+		saida = new PokemonFraquezaDAO().selecionaFromTablePokeFraquezaByIdPokemon(saida.getId(), saida);
+		System.out.println(saida.getFraquezas());
 		}catch(SQLException e) {
 			System.out.println(e);
 		}
