@@ -12,7 +12,7 @@ public class PokemonDAO {
 		
 		try {
 			Statement stmt = this.con.createStatement();
-			String sqlStatement = String.format("select * from pokemon where id = %d", id);
+			String sqlStatement = String.format("select * from pokemons where id = %d", id);
 			ResultSet rs = stmt.executeQuery(sqlStatement);
 			while(rs.next()) {
 				pokemon.setId(rs.getInt("id"));

@@ -9,27 +9,24 @@ import java.sql.*;
  * ########################################################
  */
 
-public class HabilidadesDAO {
-	private Connection con;
-	public HabilidadesDAO() {
-		this.con = new ConnectionFactory().getConnection();
-	}
+public class SexoDAO {
+	private Connection con = new ConnectionFactory().getConnection();
 	
-	public String selecionaFromHabilidadesById(int id) throws SQLException{
-		
+	public String selecionaFromTableSexoById(int id) throws SQLException {
 		try {
 			Statement stmt = this.con.createStatement();
-			String sqlStatement = String.format("select nome_habilidade from habilidades where id = %d", id);
+			String sqlStatement = String.format("select sexo from sexos where id = %d", id);
 			ResultSet rs = stmt.executeQuery(sqlStatement);
 			
 			while(rs.next()) {
-				return rs.getString("nome_habilidade");
+				return rs.getString("sexo");
 			}
 		}catch(SQLException e) {
 			System.out.println(e);
 		}finally {
 			this.con.close();
 		}
+		
 		return "";
 	}
 }

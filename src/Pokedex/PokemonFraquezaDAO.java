@@ -13,13 +13,14 @@ public class PokemonFraquezaDAO {
 		
 		try {
 			Statement stmt = this.con.createStatement();
-			String sqlStatement = String.format("select id_tipo from pokemon_fraquezas where id_pokemon = %d", id);
+			String sqlStatement = String.format("select tp.tipo from pokemons as pk"+
+							" join pokemon_fraquezas as pf on pf.id_pokemon=pk.id "+""
+							+ "join tipos as tp on tp.id=pf.id_tipo where pk.id = %d", id);
+			
 			ResultSet rs = stmt.executeQuery(sqlStatement);
 			while(rs.next()) {
-				pokemon.setFraquezas(new TiposDAO().selecionaFromTiposById(rs.getInt("id_tipo")));
-		
+				pokemon.setFraquezas(rs.getString("tp.tipo"));
 			}
-			return pokemon;
 			
 		}catch(SQLException e) {
 			System.out.println(e);

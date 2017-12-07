@@ -5,14 +5,14 @@ import java.util.ArrayList;
 public class Pokemon {
 	private int id, idEvolucao, ataqueSp, defesa, ataque, vida, defesaSp, velocidade;
 	private String nome, descricao;
-	private	ArrayList<String> tipos, habilidades, fraquezas;
-	private char sexo;
+	private	ArrayList<String> tipos, habilidades, fraquezas, sexo;
 	
 	public Pokemon() {
 
 		this.fraquezas = new ArrayList<String>();
 		this.tipos = new ArrayList<String>();
 		this.habilidades = new ArrayList<String>();
+		this.sexo = new ArrayList<String>();
 		
 	}
 	public int getId() {
@@ -69,12 +69,7 @@ public class Pokemon {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	public char getSexo() {
-		return sexo;
-	}
-	public void setSexo(char sexo) {
-		this.sexo = sexo;
-	}
+	
 	public ArrayList<String> getTipos() {
 		return this.tipos;
 	}
@@ -98,5 +93,11 @@ public class Pokemon {
 	}
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
+	}
+	public ArrayList<String> getSexo() {
+		return sexo;
+	}
+	public void setSexo(String sexo) {
+		this.sexo.add(sexo);
 	}
 }

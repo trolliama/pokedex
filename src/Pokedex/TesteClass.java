@@ -8,12 +8,14 @@ public class TesteClass {
 		PokemonDAO poke = new PokemonDAO();
 		Pokemon saida = poke.selecionaFromPokemonTableById(1, new Pokemon());
 		System.out.println(saida.getNome());
-		String tp = new TiposDAO().selecionaFromTiposById(1);
-		System.out.println(tp);
-		String hb = new HabilidadesDAO().selecionaFromHabilidadesById(1);
-		System.out.println(hb);
 		saida = new PokemonFraquezaDAO().selecionaFromTablePokeFraquezaByIdPokemon(saida.getId(), saida);
 		System.out.println(saida.getFraquezas());
+		saida = new PokemonHabilidadesDAO().selecionaFromPokeHabilidadeByIdPokemon(1, saida);
+		System.out.println(saida.getHabilidades());
+		saida = new PokemonTiposDAO().selecionaFromTablePokeTiposByIdPokemon(1, saida);
+		System.out.println(saida.getTipos());
+		saida = new PokemonSexoDAO().selecionaFromTablePokeSexoByIdPokemon(1, saida);
+		System.out.println(saida.getSexo());
 		}catch(SQLException e) {
 			System.out.println(e);
 		}

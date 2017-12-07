@@ -2,6 +2,13 @@ package Pokedex;
 
 import java.sql.*;
 
+/* ########################################################
+ * ATENÇÃO ATENÇÃO ATENÇÃO ATENÇÃO ATENÇÃO#################
+ * ATENÇÃO, ESSA CLASSE NÃO ESTÁ EM USO   #################
+ * ATENÇÃO ATENÇÃO ATENÇÃO ATENÇÃO ATENÇÃO#################
+ * ########################################################
+ */
+
 public class TiposDAO {
 	
 	private Connection con;
