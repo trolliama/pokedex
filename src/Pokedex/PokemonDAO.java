@@ -24,6 +24,9 @@ public class PokemonDAO {
 				pokemon.setDefesaSp(rs.getInt("defesaSp"));
 				pokemon.setIdEvolucao(rs.getInt("id_evolucao"));
 				pokemon.setDescricao(rs.getString("descricao"));
+				pokemon.setAltura(rs.getDouble("altura"));
+				pokemon.setPeso(rs.getDouble("peso"));
+				pokemon.setCategoria(rs.getString("categoria"));
 			}
 		}catch(SQLException e){
 			System.out.println(e);

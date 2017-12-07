@@ -39,6 +39,9 @@ public class Aplicacao {
 				System.out.println(poke.getHabilidades());
 				System.out.println(poke.getTipos());
 				System.out.println(poke.getSexo());
+				System.out.println(poke.getAltura());
+				System.out.println(poke.getPeso());
+				System.out.println(poke.getCategoria());
 			}
 		}catch(SQLException e) {
 			System.out.println(e);

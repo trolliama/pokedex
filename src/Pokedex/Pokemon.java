@@ -4,7 +4,8 @@ import java.util.ArrayList;
 
 public class Pokemon {
 	private int id, idEvolucao, ataqueSp, defesa, ataque, vida, defesaSp, velocidade;
-	private String nome, descricao;
+	private String nome, descricao, categoria;
+	private double altura, peso;
 	private	ArrayList<String> tipos, habilidades, fraquezas, sexo;
 	
 	public Pokemon() {
@@ -99,5 +100,23 @@ public class Pokemon {
 	}
 	public void setSexo(String sexo) {
 		this.sexo.add(sexo);
+	}
+	public String getCategoria() {
+		return categoria;
+	}
+	public void setCategoria(String categoria) {
+		this.categoria = categoria;
+	}
+	public double getAltura() {
+		return altura;
+	}
+	public void setAltura(double altura) {
+		this.altura = altura;
+	}
+	public double getPeso() {
+		return peso;
+	}
+	public void setPeso(double peso) {
+		this.peso = peso;
 	}
 }
