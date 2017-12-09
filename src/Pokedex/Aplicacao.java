@@ -15,6 +15,8 @@ import java.util.ArrayList;
 public class Aplicacao {
 	
     public static void main(String args[]) throws SQLException {
+    	new StyleInterface();
+    	
 		Connection con = new ConnectionFactory().getConnection();
 		
 		try {
@@ -33,16 +35,7 @@ public class Aplicacao {
 				
 				listPokemon.add(pokemon);
 			}
-			for (Pokemon poke: listPokemon) {
-				System.out.println(poke.getNome());
-				System.out.println(poke.getFraquezas());
-				System.out.println(poke.getHabilidades());
-				System.out.println(poke.getTipos());
-				System.out.println(poke.getSexo());
-				System.out.println(poke.getAltura());
-				System.out.println(poke.getPeso());
-				System.out.println(poke.getCategoria());
-			}
+			TelaInicial tlInicial = new TelaInicial(listPokemon);
 		}catch(SQLException e) {
 			System.out.println(e);
 		}finally {
