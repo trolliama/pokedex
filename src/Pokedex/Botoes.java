@@ -56,16 +56,18 @@ public class Botoes{
     	};
     	JButton btAddFavoritos = new JButton();
     	
-    	btAddFavoritos.setHorizontalTextPosition(SwingConstants.CENTER);
+    	/*btAddFavoritos.setHorizontalTextPosition(SwingConstants.CENTER);
         btAddFavoritos.setForeground(Color.WHITE);
         btAddFavoritos.setFont(new Font("Arial", Font.BOLD, 40));
         btAddFavoritos.setMargin(new Insets(0, 0, 0, 0));
         btAddFavoritos.setBorder(null);
         btAddFavoritos.setOpaque(false);
         btAddFavoritos.setContentAreaFilled(false);
-        btAddFavoritos.setBorderPainted(false);
+        btAddFavoritos.setBorderPainted(false);*/
         
     	btAddFavoritos.setIcon(new ImageIcon(criaImagem("../imagensBotoes/nao-favorito.png", 20, 20)));
+    	btAddFavoritos.setToolTipText("Adicionar aos Favoritos");
+    	
     	btAddFavoritos.addActionListener(acListener);
     	
     	return btAddFavoritos;
@@ -80,16 +82,18 @@ public class Botoes{
     	
     	JButton btAddCapturados = new JButton();
     	
-    	btAddCapturados.setHorizontalTextPosition(SwingConstants.CENTER);
+    	/*btAddCapturados.setHorizontalTextPosition(SwingConstants.CENTER);
         btAddCapturados.setForeground(Color.WHITE);
         btAddCapturados.setFont(new Font("Arial", Font.BOLD, 40));
         btAddCapturados.setMargin(new Insets(0, 0, 0, 0));
         btAddCapturados.setBorder(null);
         btAddCapturados.setOpaque(false);
         btAddCapturados.setContentAreaFilled(false);
-        btAddCapturados.setBorderPainted(false);
+        btAddCapturados.setBorderPainted(false);*/
         
     	btAddCapturados.setIcon(new ImageIcon(criaImagem("../imagensBotoes/nao-capturado.png", 20, 20)));
+    	btAddCapturados.setToolTipText("Adicionar aos capturados");
+    	
     	btAddCapturados.addActionListener(acListener);
     	
     	return btAddCapturados;
@@ -104,16 +108,18 @@ public class Botoes{
     	
     	JButton btAddDesejos = new JButton();
     	
-    	btAddDesejos.setHorizontalTextPosition(SwingConstants.CENTER);
+    	/*btAddDesejos.setHorizontalTextPosition(SwingConstants.CENTER);
         btAddDesejos.setForeground(Color.WHITE);
         btAddDesejos.setFont(new Font("Arial", Font.BOLD, 40));
         btAddDesejos.setMargin(new Insets(0, 0, 0, 0));
         btAddDesejos.setBorder(null);
         btAddDesejos.setOpaque(false);
         btAddDesejos.setContentAreaFilled(false);
-        btAddDesejos.setBorderPainted(false);
+        btAddDesejos.setBorderPainted(false);*/
         
     	btAddDesejos.setIcon(new ImageIcon(criaImagem("../imagensBotoes/nao-desejado.png", 20, 20)));
+    	btAddDesejos.setToolTipText("Adicionar nos desejados");
+    	
     	btAddDesejos.addActionListener(acListener);
     	
     	return btAddDesejos;

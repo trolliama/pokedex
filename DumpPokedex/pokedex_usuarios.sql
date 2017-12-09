@@ -25,13 +25,13 @@ DROP TABLE IF EXISTS `usuarios`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `usuarios` (
-  `cpf` varchar(16) NOT NULL DEFAULT '',
-  `login` varchar(15) NOT NULL,
-  `senha` varchar(50) NOT NULL,
-  `email` varchar(60) NOT NULL,
-  `nome` varchar(25) DEFAULT NULL,
-  `sobrenome` varchar(30) DEFAULT NULL,
-  PRIMARY KEY (`cpf`)
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `login` varchar(20) DEFAULT NULL,
+  `senha` varchar(200) DEFAULT NULL,
+  `nome` varchar(45) DEFAULT NULL,
+  `sobrenome` varchar(40) DEFAULT NULL,
+  `email` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -41,7 +41,6 @@ CREATE TABLE `usuarios` (
 
 LOCK TABLES `usuarios` WRITE;
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-INSERT INTO `usuarios` VALUES ('078.366.285-82','CaioCk','123','','Caio','Wanderley');
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -54,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-12-09 16:04:08
+-- Dump completed on 2017-12-09 18:51:37
