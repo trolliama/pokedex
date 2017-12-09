@@ -18,28 +18,32 @@ USE `pokedex`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `usuario`
+-- Table structure for table `pokemon_fraquezas`
 --
 
-DROP TABLE IF EXISTS `usuario`;
+DROP TABLE IF EXISTS `pokemon_fraquezas`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `usuario` (
-  `cpf` varchar(16) NOT NULL DEFAULT '',
-  `login` varchar(15) DEFAULT NULL,
-  `senha` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`cpf`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+CREATE TABLE `pokemon_fraquezas` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_pokemon` int(11) DEFAULT NULL,
+  `id_tipo` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id_pokemon_idx` (`id_pokemon`),
+  KEY `id_tipo_idx` (`id_tipo`),
+  CONSTRAINT `id_pokemon` FOREIGN KEY (`id_pokemon`) REFERENCES `pokemons` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `id_tipo` FOREIGN KEY (`id_tipo`) REFERENCES `tipos` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `usuario`
+-- Dumping data for table `pokemon_fraquezas`
 --
 
-LOCK TABLES `usuario` WRITE;
-/*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` VALUES ('078.366.285-82','CaioCk','123');
-/*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
+LOCK TABLES `pokemon_fraquezas` WRITE;
+/*!40000 ALTER TABLE `pokemon_fraquezas` DISABLE KEYS */;
+INSERT INTO `pokemon_fraquezas` VALUES (1,3,1),(2,3,2),(3,3,3),(4,3,4),(5,2,1),(6,2,2),(7,2,3),(8,2,4),(9,1,1),(10,1,2),(11,1,3),(12,1,4);
+/*!40000 ALTER TABLE `pokemon_fraquezas` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -51,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-12-02  1:10:37
+-- Dump completed on 2017-12-09 16:04:07

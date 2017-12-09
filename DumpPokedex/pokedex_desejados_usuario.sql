@@ -18,27 +18,31 @@ USE `pokedex`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `habilidades`
+-- Table structure for table `desejados_usuario`
 --
 
-DROP TABLE IF EXISTS `habilidades`;
+DROP TABLE IF EXISTS `desejados_usuario`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `habilidades` (
+CREATE TABLE `desejados_usuario` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nome_habilidade` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+  `id_pokemon` int(11) DEFAULT NULL,
+  `cpf` varchar(16) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `cpf` (`cpf`),
+  KEY `id_pokemon` (`id_pokemon`),
+  CONSTRAINT `desejados_usuario_ibfk_1` FOREIGN KEY (`cpf`) REFERENCES `usuarios` (`cpf`),
+  CONSTRAINT `desejados_usuario_ibfk_2` FOREIGN KEY (`id_pokemon`) REFERENCES `pokemons` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `habilidades`
+-- Dumping data for table `desejados_usuario`
 --
 
-LOCK TABLES `habilidades` WRITE;
-/*!40000 ALTER TABLE `habilidades` DISABLE KEYS */;
-INSERT INTO `habilidades` VALUES (1,'Overgrow');
-/*!40000 ALTER TABLE `habilidades` ENABLE KEYS */;
+LOCK TABLES `desejados_usuario` WRITE;
+/*!40000 ALTER TABLE `desejados_usuario` DISABLE KEYS */;
+/*!40000 ALTER TABLE `desejados_usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -50,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-12-07 15:35:57
+-- Dump completed on 2017-12-09 16:04:07

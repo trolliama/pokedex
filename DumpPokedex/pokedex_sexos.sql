@@ -18,34 +18,27 @@ USE `pokedex`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `pokemon`
+-- Table structure for table `sexos`
 --
 
-DROP TABLE IF EXISTS `pokemon`;
+DROP TABLE IF EXISTS `sexos`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `pokemon` (
-  `id` int(11) NOT NULL DEFAULT '0',
-  `nome` varchar(15) NOT NULL,
-  `vida` int(11) NOT NULL,
-  `ataque` int(11) NOT NULL,
-  `defesa` int(11) NOT NULL,
-  `ataqueSp` int(11) DEFAULT NULL,
-  `defesaSp` int(11) DEFAULT NULL,
-  `velocidade` int(11) DEFAULT NULL,
-  `id_evolucao` int(11) DEFAULT NULL,
+CREATE TABLE `sexos` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `sexo` varchar(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `pokemon`
+-- Dumping data for table `sexos`
 --
 
-LOCK TABLES `pokemon` WRITE;
-/*!40000 ALTER TABLE `pokemon` DISABLE KEYS */;
-INSERT INTO `pokemon` VALUES (1,'Bulbasaur',45,49,49,65,65,45,2),(2,'Ivysaur',60,62,63,80,80,60,3),(3,'Venusaur',80,82,83,100,100,80,NULL);
-/*!40000 ALTER TABLE `pokemon` ENABLE KEYS */;
+LOCK TABLES `sexos` WRITE;
+/*!40000 ALTER TABLE `sexos` DISABLE KEYS */;
+INSERT INTO `sexos` VALUES (1,'M'),(2,'F');
+/*!40000 ALTER TABLE `sexos` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -57,4 +50,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-12-02  1:10:37
+-- Dump completed on 2017-12-09 16:04:08

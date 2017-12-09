@@ -18,32 +18,31 @@ USE `pokedex`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `pokemon_habilidades`
+-- Table structure for table `capturados_usuario`
 --
 
-DROP TABLE IF EXISTS `pokemon_habilidades`;
+DROP TABLE IF EXISTS `capturados_usuario`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `pokemon_habilidades` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `capturados_usuario` (
+  `id` int(11) NOT NULL,
   `id_pokemon` int(11) DEFAULT NULL,
-  `id_habilidades` int(11) DEFAULT NULL,
+  `cpf` varchar(16) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `id_pokemon` (`id_pokemon`),
-  KEY `id_habilidades` (`id_habilidades`),
-  CONSTRAINT `pokemon_habilidades_ibfk_1` FOREIGN KEY (`id_pokemon`) REFERENCES `pokemon` (`id`),
-  CONSTRAINT `pokemon_habilidades_ibfk_2` FOREIGN KEY (`id_habilidades`) REFERENCES `habilidades` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+  KEY `id_pokemon_idx` (`id_pokemon`),
+  KEY `cpf_idx` (`cpf`),
+  CONSTRAINT `cpf` FOREIGN KEY (`cpf`) REFERENCES `usuarios` (`cpf`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `id` FOREIGN KEY (`id_pokemon`) REFERENCES `pokemons` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `pokemon_habilidades`
+-- Dumping data for table `capturados_usuario`
 --
 
-LOCK TABLES `pokemon_habilidades` WRITE;
-/*!40000 ALTER TABLE `pokemon_habilidades` DISABLE KEYS */;
-INSERT INTO `pokemon_habilidades` VALUES (1,1,1),(2,2,1);
-/*!40000 ALTER TABLE `pokemon_habilidades` ENABLE KEYS */;
+LOCK TABLES `capturados_usuario` WRITE;
+/*!40000 ALTER TABLE `capturados_usuario` DISABLE KEYS */;
+/*!40000 ALTER TABLE `capturados_usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -55,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-12-02  1:10:37
+-- Dump completed on 2017-12-09 16:04:07

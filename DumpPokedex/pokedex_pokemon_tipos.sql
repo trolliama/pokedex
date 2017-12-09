@@ -26,14 +26,14 @@ DROP TABLE IF EXISTS `pokemon_tipos`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `pokemon_tipos` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_pokemons` int(11) DEFAULT NULL,
-  `id_tipos` int(11) DEFAULT NULL,
+  `id_pokemon` int(11) DEFAULT NULL,
+  `id_tipo` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `id_pokemons` (`id_pokemons`),
-  KEY `id_tipos` (`id_tipos`),
-  CONSTRAINT `pokemon_tipos_ibfk_1` FOREIGN KEY (`id_pokemons`) REFERENCES `pokemon` (`id`),
-  CONSTRAINT `pokemon_tipos_ibfk_2` FOREIGN KEY (`id_tipos`) REFERENCES `tipos` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+  KEY `pokemon_tipos_ibfk_2` (`id_tipo`),
+  KEY `pokemon_tipos_ibfk_1` (`id_pokemon`),
+  CONSTRAINT `pokemon_tipos_ibfk_1` FOREIGN KEY (`id_pokemon`) REFERENCES `pokemons` (`id`),
+  CONSTRAINT `pokemon_tipos_ibfk_2` FOREIGN KEY (`id_tipo`) REFERENCES `tipos` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -42,7 +42,7 @@ CREATE TABLE `pokemon_tipos` (
 
 LOCK TABLES `pokemon_tipos` WRITE;
 /*!40000 ALTER TABLE `pokemon_tipos` DISABLE KEYS */;
-INSERT INTO `pokemon_tipos` VALUES (1,1,5),(2,1,6),(3,2,5),(4,2,6);
+INSERT INTO `pokemon_tipos` VALUES (1,1,5),(2,1,6),(3,2,5),(4,2,6),(5,3,5),(6,3,6);
 /*!40000 ALTER TABLE `pokemon_tipos` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -55,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-12-02  1:10:37
+-- Dump completed on 2017-12-09 16:04:07

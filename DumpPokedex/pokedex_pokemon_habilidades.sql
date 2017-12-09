@@ -18,32 +18,32 @@ USE `pokedex`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `pokemon_fraquezas`
+-- Table structure for table `pokemon_habilidades`
 --
 
-DROP TABLE IF EXISTS `pokemon_fraquezas`;
+DROP TABLE IF EXISTS `pokemon_habilidades`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `pokemon_fraquezas` (
+CREATE TABLE `pokemon_habilidades` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_pokemon` int(11) DEFAULT NULL,
-  `id_tipo` int(11) DEFAULT NULL,
+  `id_habilidade` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `id_pokemon` (`id_pokemon`),
-  KEY `id_tipo` (`id_tipo`),
-  CONSTRAINT `pokemon_fraquezas_ibfk_1` FOREIGN KEY (`id_pokemon`) REFERENCES `pokemon` (`id`),
-  CONSTRAINT `pokemon_fraquezas_ibfk_2` FOREIGN KEY (`id_tipo`) REFERENCES `tipos` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+  KEY `pokemon_habilidades_ibfk_2` (`id_habilidade`),
+  CONSTRAINT `pokemon_habilidades_ibfk_1` FOREIGN KEY (`id_pokemon`) REFERENCES `pokemons` (`id`),
+  CONSTRAINT `pokemon_habilidades_ibfk_2` FOREIGN KEY (`id_habilidade`) REFERENCES `habilidades` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `pokemon_fraquezas`
+-- Dumping data for table `pokemon_habilidades`
 --
 
-LOCK TABLES `pokemon_fraquezas` WRITE;
-/*!40000 ALTER TABLE `pokemon_fraquezas` DISABLE KEYS */;
-INSERT INTO `pokemon_fraquezas` VALUES (1,1,1),(2,1,2),(3,1,3),(4,1,4),(5,1,5),(6,2,1),(7,2,2),(8,2,3),(9,2,4),(10,2,5);
-/*!40000 ALTER TABLE `pokemon_fraquezas` ENABLE KEYS */;
+LOCK TABLES `pokemon_habilidades` WRITE;
+/*!40000 ALTER TABLE `pokemon_habilidades` DISABLE KEYS */;
+INSERT INTO `pokemon_habilidades` VALUES (1,1,1),(2,2,1),(3,3,1);
+/*!40000 ALTER TABLE `pokemon_habilidades` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -55,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-12-02  1:10:37
+-- Dump completed on 2017-12-09 16:04:07
