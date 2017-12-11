@@ -1,10 +1,8 @@
-CREATE DATABASE  IF NOT EXISTS `pokedex` /*!40100 DEFAULT CHARACTER SET latin1 */;
-USE `pokedex`;
--- MySQL dump 10.13  Distrib 5.5.58, for debian-linux-gnu (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: pokedex
 -- ------------------------------------------------------
--- Server version	5.5.58-0+deb8u1
+-- Server version	5.5.5-10.1.25-MariaDB
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -33,7 +31,7 @@ CREATE TABLE `pokemon_tipos` (
   KEY `pokemon_tipos_ibfk_1` (`id_pokemon`),
   CONSTRAINT `pokemon_tipos_ibfk_1` FOREIGN KEY (`id_pokemon`) REFERENCES `pokemons` (`id`),
   CONSTRAINT `pokemon_tipos_ibfk_2` FOREIGN KEY (`id_tipo`) REFERENCES `tipos` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -42,7 +40,7 @@ CREATE TABLE `pokemon_tipos` (
 
 LOCK TABLES `pokemon_tipos` WRITE;
 /*!40000 ALTER TABLE `pokemon_tipos` DISABLE KEYS */;
-INSERT INTO `pokemon_tipos` VALUES (1,1,5),(2,1,6),(3,2,5),(4,2,6),(5,3,5),(6,3,6);
+INSERT INTO `pokemon_tipos` VALUES (1,1,5),(2,1,6),(3,2,5),(4,2,6),(5,3,5),(6,3,6),(7,4,1),(8,5,1),(9,6,1),(10,7,9),(11,8,9),(12,9,9),(13,10,11),(14,11,11),(15,12,2),(16,13,12),(17,14,12),(18,15,12);
 /*!40000 ALTER TABLE `pokemon_tipos` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -55,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-12-09 18:51:36
+-- Dump completed on 2017-12-11 11:04:19
