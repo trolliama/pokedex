@@ -15,14 +15,6 @@ import javax.swing.SwingConstants;
 
 
 public class Botoes{
-
-	public Image criaImagem(String caminho, int width, int height) {
-
-    	ImageIcon img = new ImageIcon(getClass().getResource(caminho));
-    	Image newImg = img.getImage().getScaledInstance(width, height, java.awt.Image.SCALE_SMOOTH);
-    	
-    	return newImg;
-    }
     
     public JButton criaJButtonPokemon(Image img, Pokemon poke) {
     	
@@ -67,7 +59,7 @@ public class Botoes{
         btAddFavoritos.setContentAreaFilled(false);
         btAddFavoritos.setBorderPainted(false);*/
         
-    	btAddFavoritos.setIcon(new ImageIcon(criaImagem("../imagensBotoes/nao-favorito.png", 20, 20)));
+    	btAddFavoritos.setIcon(new ImageIcon(new Imagem("../imagensBotoes/nao-favorito.png", 20, 20).getNewImg()));
     	btAddFavoritos.setToolTipText("Adicionar aos Favoritos");
     	
     	btAddFavoritos.addActionListener(acListener);
@@ -93,7 +85,7 @@ public class Botoes{
         btAddCapturados.setContentAreaFilled(false);
         btAddCapturados.setBorderPainted(false);*/
         
-    	btAddCapturados.setIcon(new ImageIcon(criaImagem("../imagensBotoes/nao-capturado.png", 20, 20)));
+    	btAddCapturados.setIcon(new ImageIcon(new Imagem("../imagensBotoes/nao-capturado.png", 20, 20).getNewImg()));
     	btAddCapturados.setToolTipText("Adicionar aos capturados");
     	
     	btAddCapturados.addActionListener(acListener);
@@ -119,7 +111,7 @@ public class Botoes{
         btAddDesejos.setContentAreaFilled(false);
         btAddDesejos.setBorderPainted(false);*/
         
-    	btAddDesejos.setIcon(new ImageIcon(criaImagem("../imagensBotoes/nao-desejado.png", 20, 20)));
+    	btAddDesejos.setIcon(new ImageIcon(new Imagem("../imagensBotoes/nao-desejado.png", 20, 20).getNewImg()));
     	btAddDesejos.setToolTipText("Adicionar nos desejados");
     	
     	btAddDesejos.addActionListener(acListener);

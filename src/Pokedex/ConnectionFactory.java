@@ -6,7 +6,7 @@ public class ConnectionFactory {
 	
 	public Connection getConnection() {
 		try {
-			return DriverManager.getConnection("jdbc:mysql://localhost/pokedex", "root", "cdc121022");
+			return DriverManager.getConnection("jdbc:mysql://localhost/pokedex", "root", "");
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}

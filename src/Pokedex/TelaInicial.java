@@ -38,7 +38,9 @@ public class TelaInicial extends JFrame{
         this.setLocationRelativeTo(null);
         this.getContentPane().setLayout(new BorderLayout());
         
-        this.pokemonLista = pokemonLista;
+        Pokemon poke = this.pokemonLista.get(2-1);
+        System.out.println(poke.getNome());
+        System.out.println(this.pokemonLista);
        
     }
     
@@ -53,14 +55,17 @@ public class TelaInicial extends JFrame{
     
     public void criaScrollPane() {
     	this.scrollPane = new JScrollPane(this.painelInicial);
-    	
+    	this.scrollPane.setViewportView(this.painelInicial);
+        
     	this.add(this.scrollPane, BorderLayout.CENTER);
     }
     
     public void criaPainelInicial() {
     	System.out.println("q");
     	this.painelInicial = new JPanel();
-    	this.painelInicial.setPreferredSize(this.dimension);
+        int width = (int) (this.dimension.getWidth());
+        System.out.println(this.pokemonLista.size());
+    	this.painelInicial.setPreferredSize(new Dimension( width,50*100));
     }
     
     public JPanel criaPainelTemporarioBorderLayout() {
@@ -90,12 +95,12 @@ public class TelaInicial extends JFrame{
     	System.out.println("k");
     	String caminhoImg = "../imagensPokemon/";
     	
-    	for(int i=0;i<30;i++) {
+    	for(int i=0;i<50;i++) {
     	for(Pokemon poke: this.pokemonLista) {
     		this.painelInicial.add(criaPainelTemporarioBorderLayout());
     		criaPainelTemporarioFlowLayout();
     		
-    		Image img = new Botoes().criaImagem(caminhoImg+poke.getId()+".png", 140, 140);
+    		Image img = new Imagem(caminhoImg+poke.getId()+".png", 140, 140).getNewImg();
     		criaBotoes(img, poke);
     	}
     	}
