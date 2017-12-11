@@ -23,10 +23,12 @@ import javax.swing.*;
 @SuppressWarnings("serial")
 public class TelaInicial extends JFrame{
     
-	private JPanel painel,painelTemporarioBL,painelTemporarioFL;
+	private JPanel painelInicial,painelTemporarioBL,painelTemporarioFL;
 	private JScrollPane scrollPane;
 	private ArrayList<Pokemon> pokemonLista;
 	private Dimension dimension;
+	private String cpfUsuarioAtual;
+	private int idUsuario;
 	
     public TelaInicial(ArrayList<Pokemon> pokemonLista){
         super("Pokédex");
@@ -37,12 +39,7 @@ public class TelaInicial extends JFrame{
         this.getContentPane().setLayout(new BorderLayout());
         
         this.pokemonLista = pokemonLista;
-        
-    	criaPainel();
-        listaPokemons();
-    	criaScrollPane();
-        
-        setVisible(true);
+       
     }
     
     public void setSizeJFrame() {
@@ -55,21 +52,22 @@ public class TelaInicial extends JFrame{
     }
     
     public void criaScrollPane() {
-    	this.scrollPane = new JScrollPane(this.painel);
+    	this.scrollPane = new JScrollPane(this.painelInicial);
     	
     	this.add(this.scrollPane, BorderLayout.CENTER);
     }
     
-    public void criaPainel() {
-    	this.painel = new JPanel();
-    	this.painel.setPreferredSize(this.dimension);
+    public void criaPainelInicial() {
+    	System.out.println("q");
+    	this.painelInicial = new JPanel();
+    	this.painelInicial.setPreferredSize(this.dimension);
     }
     
-    public void criaPainelTemporarioBorderLayout() {
+    public JPanel criaPainelTemporarioBorderLayout() {
     	this.painelTemporarioBL = new JPanel();
     	this.painelTemporarioBL.setLayout(new BorderLayout());
     	
-    	this.painel.add(this.painelTemporarioBL);
+    	return this.painelTemporarioBL;
     }
     
     public void criaPainelTemporarioFlowLayout() {
@@ -83,17 +81,18 @@ public class TelaInicial extends JFrame{
 
 		this.painelTemporarioBL.add(new Botoes().criaJButtonPokemon(img, poke));
 		this.painelTemporarioFL.add(new Botoes().criaBotaoAddFavoritos(poke));
-		this.painelTemporarioFL.add(new Botoes().criaBotaoAddCapturados(poke));
+		this.painelTemporarioFL.add(new Botoes().criaBotaoAddCapturados(poke, this.idUsuario));
 		this.painelTemporarioFL.add(new Botoes().criaBotaoAddDesejos(poke));
 		
     }
     
     public void listaPokemons(){
+    	System.out.println("k");
     	String caminhoImg = "../imagensPokemon/";
     	
     	for(int i=0;i<30;i++) {
     	for(Pokemon poke: this.pokemonLista) {
-    		criaPainelTemporarioBorderLayout();
+    		this.painelInicial.add(criaPainelTemporarioBorderLayout());
     		criaPainelTemporarioFlowLayout();
     		
     		Image img = new Botoes().criaImagem(caminhoImg+poke.getId()+".png", 140, 140);

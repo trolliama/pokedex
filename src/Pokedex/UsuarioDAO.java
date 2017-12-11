@@ -1,13 +1,18 @@
 package Pokedex;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
 public class UsuarioDAO {
 	
-	private Connection con = new ConnectionFactory().getConnection();
+	private Connection con;
+	
+	public UsuarioDAO() {
+		this.con = new ConnectionFactory().getConnection();
+	}
 	
 	public String selecionaFromUsuarioByLogin(String login) throws SQLException {
 		String senha = "";
@@ -28,5 +33,27 @@ public class UsuarioDAO {
 		}
 		
 		return senha;
+	}
+	
+	public void cadastraUsuario(String login, String senha, String nome, String sobrenome, String email) throws SQLException {
+		
+		try {
+			String sqlStatement = "insert into usuarios values(default,?,?,?,?,?)";
+			PreparedStatement stmt = this.con.prepareStatement(sqlStatement);
+			
+			stmt.setString(1,login);
+			stmt.setString(2, senha);
+			stmt.setString(3, nome);
+			stmt.setString(4, sobrenome);
+			stmt.setString(5, email);
+			
+			stmt.execute();
+			stmt.close();
+			
+		}catch(SQLException e) {
+			System.out.println(e);
+		}finally {
+			this.con.close();
+		}
 	}
 }

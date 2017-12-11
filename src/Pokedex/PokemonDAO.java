@@ -8,6 +8,18 @@ public class PokemonDAO {
 		this.con = new ConnectionFactory().getConnection();
 	}
 	
+	public ResultSet selecionaAllPokemons() throws SQLException {
+		ResultSet rs = null;
+		
+		try {
+			Statement stmt = this.con.createStatement();
+			rs = stmt.executeQuery("select id from pokemons");
+		}catch(SQLException e) {
+			System.out.println(e);
+		}
+		return rs;
+	}
+	
 	public Pokemon selecionaFromPokemonTableById(int id, Pokemon pokemon) throws SQLException {
 		
 		try {

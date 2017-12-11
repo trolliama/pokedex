@@ -6,6 +6,8 @@ import java.awt.Image;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -73,10 +75,10 @@ public class Botoes{
     	return btAddFavoritos;
     }
     
-    public JButton criaBotaoAddCapturados(Pokemon poke) {
+    public JButton criaBotaoAddCapturados(Pokemon poke, int idUsuario) {
     	ActionListener acListener = new ActionListener() {
     		public void actionPerformed(ActionEvent e) {
-    			System.out.println("adicionado aos capturados o pokemon: "+poke.getNome());
+    			
     		}
     	};
     	
