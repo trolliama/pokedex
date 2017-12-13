@@ -12,14 +12,14 @@ public class CapturadosUsuarioDAO {
 		this.con = new ConnectionFactory().getConnection();
 	}
 	
-	public ResultSet selecionaPokemonFromCapturadosByUsuario(int idUsuario) throws SQLException {
-		
+	public Object[] selecionaPokemonFromCapturadosByUsuario(int idUsuario) throws SQLException {
+		Object[] obj = new Object[2];
 		ResultSet rs = null;
 
 		try {
 			Statement stmt = this.con.createStatement();
 			String sqlStatement = String.format("select pk.id from pokemons as pk"
-					+ "join capturados_usuario as cu pn cu.id_pokemon = pk.id"
+					+ "join capturados_usuario as cu on cu.id_pokemon = pk.id"
 					+ "join usuarios as u on cu.id_usuario = u.id where u.id = %s", idUsuario);
 			rs = stmt.executeQuery(sqlStatement);
 			
@@ -28,7 +28,10 @@ public class CapturadosUsuarioDAO {
 		}finally {
 			this.con.close();
 		}
+
+		obj[0] = rs;
+		obj[1] = this.con;
 		
-		return rs;
+		return obj;
 	}
 }

@@ -8,7 +8,8 @@ public class PokemonDAO {
 		this.con = new ConnectionFactory().getConnection();
 	}
 	
-	public ResultSet selecionaAllPokemons() throws SQLException {
+	public Object[] selecionaAllPokemons() throws SQLException {
+		Object[] obj = new Object[2];
 		ResultSet rs = null;
 		
 		try {
@@ -17,7 +18,10 @@ public class PokemonDAO {
 		}catch(SQLException e) {
 			System.out.println(e);
 		}
-		return rs;
+		obj[0] = rs;
+		obj[1] = this.con;
+		
+		return obj;
 	}
 	
 	public Pokemon selecionaFromPokemonTableById(int id, Pokemon pokemon) throws SQLException {

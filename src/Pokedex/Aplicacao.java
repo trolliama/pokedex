@@ -16,12 +16,8 @@ public class Aplicacao {
 	
     public static void main(String args[]) throws SQLException{
     	new StyleInterface();
-		ListaDePokemons listPokemon = new ListaDePokemons(new PokemonDAO().selecionaAllPokemons());
-		TelaInicial wn = new TelaInicial(listPokemon.getLista());
+		TelaInicial wn = new TelaInicial();
 		System.out.println("a");
-		wn.criaPainelInicial();
-        wn.listaPokemons();
-    	wn.criaScrollPane();
     	wn.setVisible(true);
         
     }

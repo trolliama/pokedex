@@ -10,8 +10,10 @@ public class ListaDePokemons{
 	
 	private ArrayList<Pokemon> listPokemon;
 	
-	public ListaDePokemons(ResultSet rs) throws SQLException {
+	public ListaDePokemons(Object[] obj) throws SQLException {
 		this.listPokemon = new ArrayList<Pokemon>();
+		ResultSet rs = (ResultSet) obj[0];
+		Connection con = (Connection) obj[1];
 		
 		try {
 			
@@ -29,6 +31,8 @@ public class ListaDePokemons{
 			
 		}catch(SQLException e) {
 			System.out.println(e);
+		}finally {
+			con.close();
 		}
 		
 	}

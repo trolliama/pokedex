@@ -8,10 +8,12 @@ package Pokedex;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.DisplayMode;
+import java.awt.FlowLayout;
 import java.awt.GraphicsEnvironment;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.swing.*;
@@ -23,14 +25,11 @@ import javax.swing.*;
 @SuppressWarnings("serial")
 public class TelaInicial extends JFrame{
     
-	private JPanel painelInicial,painelTemporarioBL,painelTemporarioFL;
-	private JScrollPane scrollPane;
-	private ArrayList<Pokemon> pokemonLista;
 	private Dimension dimension;
-	private String cpfUsuarioAtual;
 	private int idUsuario;
+	private JTabbedPane jtp;
 	
-    public TelaInicial(ArrayList<Pokemon> pokemonLista){
+    public TelaInicial() throws SQLException{
         super("Pokédex");
         
         this.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
@@ -38,10 +37,7 @@ public class TelaInicial extends JFrame{
         this.setLocationRelativeTo(null);
         this.getContentPane().setLayout(new BorderLayout());
         
-        Pokemon poke = this.pokemonLista.get(2-1);
-        System.out.println(poke.getNome());
-        System.out.println(this.pokemonLista);
-       
+        criaAbas();
     }
     
     public void setSizeJFrame() {
@@ -53,56 +49,17 @@ public class TelaInicial extends JFrame{
     	this.setSize(this.dimension);
     }
     
-    public void criaScrollPane() {
-    	this.scrollPane = new JScrollPane(this.painelInicial);
-    	this.scrollPane.setViewportView(this.painelInicial);
+    public void criaAbas() throws SQLException {
+    	
+    	this.jtp = new JTabbedPane();
+        add(this.jtp,BorderLayout.NORTH);
         
-    	this.add(this.scrollPane, BorderLayout.CENTER);
-    }
-    
-    public void criaPainelInicial() {
-    	System.out.println("q");
-    	this.painelInicial = new JPanel();
-        int width = (int) (this.dimension.getWidth());
-        System.out.println(this.pokemonLista.size());
-    	this.painelInicial.setPreferredSize(new Dimension( width,50*100));
-    }
-    
-    public JPanel criaPainelTemporarioBorderLayout() {
-    	this.painelTemporarioBL = new JPanel();
-    	this.painelTemporarioBL.setLayout(new BorderLayout());
-    	
-    	return this.painelTemporarioBL;
-    }
-    
-    public void criaPainelTemporarioFlowLayout() {
-
-    	this.painelTemporarioFL = new JPanel();
-    	
-    	this.painelTemporarioBL.add(this.painelTemporarioFL, BorderLayout.SOUTH);
-    }
-    
-    public void criaBotoes(Image img, Pokemon poke) {
-
-		this.painelTemporarioBL.add(new Botoes().criaJButtonPokemon(img, poke));
-		this.painelTemporarioFL.add(new Botoes().criaBotaoAddFavoritos(poke));
-		this.painelTemporarioFL.add(new Botoes().criaBotaoAddCapturados(poke, this.idUsuario));
-		this.painelTemporarioFL.add(new Botoes().criaBotaoAddDesejos(poke));
-		
-    }
-    
-    public void listaPokemons(){
-    	System.out.println("k");
-    	String caminhoImg = "../imagensPokemon/";
-    	
-    	for(int i=0;i<50;i++) {
-    	for(Pokemon poke: this.pokemonLista) {
-    		this.painelInicial.add(criaPainelTemporarioBorderLayout());
-    		criaPainelTemporarioFlowLayout();
-    		
-    		Image img = new Imagem(caminhoImg+poke.getId()+".png", 140, 140).getNewImg();
-    		criaBotoes(img, poke);
-    	}
-    	}
+        PainelTabAllPokemos painelTAP = new PainelTabAllPokemos(this.dimension);
+        painelTAP.listaOsPokemons();
+        this.jtp.addTab("Pokemons", painelTAP.criaScrollPane());
+        
+        PainelTabDesejadosPokemons painelTDP = new PainelTabDesejadosPokemons(this.dimension, this.idUsuario);
+        painelTDP.listaOsPokemons();
+        this.jtp.addTab("Desejados", painelTDP.criaScrollPane());
     }
 }
