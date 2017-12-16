@@ -10,7 +10,6 @@ public class DesejadosUsuarioDAO {
 	
 	private Connection con;
 	public DesejadosUsuarioDAO() {
-		System.out.println("uahsu");
 		this.con = new ConnectionFactory().getConnection();
 	}
 	

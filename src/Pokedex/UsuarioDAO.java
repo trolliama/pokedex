@@ -14,25 +14,25 @@ public class UsuarioDAO {
 		this.con = new ConnectionFactory().getConnection();
 	}
 	
-	public String selecionaFromUsuarioByLogin(String login) throws SQLException {
-		String senha = "";
+	public Object[] selecionaFromUsuarioByLogin(String login) throws SQLException {
+		Object[] ob = new Object[2];
 		
 		try {
 			Statement stmt = this.con.createStatement();
-			String sqlStatement = String.format("select senha from usuarios where login=%s", login);
+			String sqlStatement = String.format("select id,senha from usuarios where login=%s", login);
 			ResultSet rs = stmt.executeQuery(sqlStatement);
 			
 			while(rs.next()) {
-				senha = rs.getString("senha");
+				ob[0] = rs.getString("senha");
+				ob[1] = rs.getInt("id");
 			}
 		}catch(SQLException e) {
 			System.out.println(e);
-			return senha;
 		}finally {
 			this.con.close();
 		}
 		
-		return senha;
+		return ob;
 	}
 	
 	public void cadastraUsuario(String login, String senha, String nome, String sobrenome, String email) throws SQLException {

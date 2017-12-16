@@ -8,9 +8,8 @@ public class PainelTabCapturadosPokemons extends PaineisTelaInicial{
 
 	public PainelTabCapturadosPokemons(Dimension dimension,int idUsuario) throws SQLException {
 		super(dimension, idUsuario);
-		System.out.println("cheguei");
+		
 		pkLista = new ListaDePokemons(new CapturadosUsuarioDAO().selecionaPokemonFromCapturadosByUsuario(idUsuario));
-		System.out.println("não cheguei");
 		chamalistarPokemons();
 	}
 	

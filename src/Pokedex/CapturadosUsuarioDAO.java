@@ -10,7 +10,6 @@ public class CapturadosUsuarioDAO {
 	
 	private Connection con;
 	public CapturadosUsuarioDAO() {
-		System.out.println("rs");
 		this.con = new ConnectionFactory().getConnection();
 	}
 	
@@ -27,8 +26,6 @@ public class CapturadosUsuarioDAO {
 			
 		}catch(SQLException e) {
 			System.out.println(e);
-		}finally {
-			this.con.close();
 		}
 
 		obj[0] = rs;

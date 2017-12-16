@@ -45,7 +45,6 @@ public class Botoes{
     public JButton criaBotaoAddFavoritos(Pokemon poke, int idUsuario, JPanel painel, PaineisTelaInicial obj) throws SQLException{
     	
     	boolean adicionado = new FavoritosUsuarioDAO().selecionaPokemonFromFavoritosByUserAndPoke(idUsuario, poke.getId());
-    	System.out.println(adicionado);
     	
     	JButton btAddFavoritos = new JButton();
     	
@@ -85,7 +84,6 @@ public class Botoes{
     	JButton btAddCapturados = new JButton();
         
     	boolean adicionado = new CapturadosUsuarioDAO().selecionaPokemonFromCapturadosByUserAndPoke(idUsuario, poke.getId());
-    	System.out.println("passei");
     	btAddCapturados.setIcon(new ImageIcon(new Imagem().setNewImg(adicionado, "Capturado", 20, 20 )));
     	btAddCapturados.setToolTipText("Adicionar/Retirar dos capturados");
     	
@@ -93,9 +91,7 @@ public class Botoes{
     		public void actionPerformed(ActionEvent e) {
     			try {
     				if(adicionado) {
-    					System.out.println("sss");
     					new CapturadosUsuarioDAO().retiraPokemonEmCapturados(poke.getId(), idUsuario);
-    					System.out.println("aush");
     					btAddCapturados.setIcon(new ImageIcon(new Imagem().setNewImg(false, "Capturado", 20, 20 )));
     				}
     				else {
@@ -133,6 +129,7 @@ public class Botoes{
     					btAddDesejos.setIcon(new ImageIcon(new Imagem().setNewImg(false, "Desejado", 20, 20 )));
     				}
     				else {
+    					System.out.print("carai Borrachaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
     					new DesejadosUsuarioDAO().inseriPokemonEmDesejados(poke.getId(), idUsuario);
     					btAddDesejos.setIcon(new ImageIcon(new Imagem().setNewImg(true, "Desejado", 20, 20 )));
     				}

@@ -61,25 +61,21 @@ public class TelaInicial extends JFrame{
     }
     
     public void criaAbaAllPokes() throws SQLException {
-    	System.out.println("a");
     	PainelTabAllPokemos painelTAP = new PainelTabAllPokemos(this.dimension, this.idUsuario);
         this.jtp.addTab("Pokemons", painelTAP.criaScrollPane());
     }
     
     public void criaAbaDesejados() throws SQLException {
-    	System.out.println("b");
     	PainelTabDesejadosPokemons painelTDP = new PainelTabDesejadosPokemons(this.dimension, this.idUsuario);
         this.jtp.addTab("Desejados", painelTDP.criaScrollPane());
     }
     
     public void criaAbaFavoritos() throws SQLException {
-    	System.out.println("c");
     	PainelTabFavoritosPokemons painelTFP = new PainelTabFavoritosPokemons(this.dimension, this.idUsuario);
         this.jtp.addTab("Favoritos", painelTFP.criaScrollPane());
     }
     
     public void criaAbaCapturados() throws SQLException{
-    	System.out.println("d");
     	PainelTabCapturadosPokemons painelTCP = new PainelTabCapturadosPokemons(this.dimension, this.idUsuario);
     	this.jtp.addTab("Capturados", painelTCP.criaScrollPane());
     }
