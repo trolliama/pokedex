@@ -11,6 +11,7 @@ import java.sql.SQLException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 
@@ -41,78 +42,109 @@ public class Botoes{
     	
     }
     
-    public JButton criaBotaoAddFavoritos(Pokemon poke) {
-
-    	ActionListener acListener = new ActionListener() {
-    		public void actionPerformed(ActionEvent e) {
-    			System.out.println("adicionado aos favoritos o pokemon: "+poke.getNome());
-    		}
-    	};
+    public JButton criaBotaoAddFavoritos(Pokemon poke, int idUsuario, JPanel painel, PaineisTelaInicial obj) throws SQLException{
+    	
+    	boolean adicionado = new FavoritosUsuarioDAO().selecionaPokemonFromFavoritosByUserAndPoke(idUsuario, poke.getId());
+    	System.out.println(adicionado);
+    	
     	JButton btAddFavoritos = new JButton();
     	
-    	/*btAddFavoritos.setHorizontalTextPosition(SwingConstants.CENTER);
-        btAddFavoritos.setForeground(Color.WHITE);
-        btAddFavoritos.setFont(new Font("Arial", Font.BOLD, 40));
-        btAddFavoritos.setMargin(new Insets(0, 0, 0, 0));
-        btAddFavoritos.setBorder(null);
-        btAddFavoritos.setOpaque(false);
-        btAddFavoritos.setContentAreaFilled(false);
-        btAddFavoritos.setBorderPainted(false);*/
-        
-    	btAddFavoritos.setIcon(new ImageIcon(new Imagem("../imagensBotoes/nao-favorito.png", 20, 20).getNewImg()));
-    	btAddFavoritos.setToolTipText("Adicionar aos Favoritos");
+		btAddFavoritos.setIcon(new ImageIcon(new Imagem().setNewImg(adicionado, "Favorito", 20, 20 )));
+    	
+    	
+    	btAddFavoritos.setToolTipText("Adicionar/Retirar dos Favoritos");
+    	
+    	ActionListener acListener = new ActionListener() {
+    		public void actionPerformed(ActionEvent e) {
+    			try {
+    				if(adicionado) {
+    					new FavoritosUsuarioDAO().retiraPokemonEmFavoritos(poke.getId(), idUsuario);
+    					btAddFavoritos.setIcon(new ImageIcon(new Imagem().setNewImg(false, "Favorito", 20, 20 )));
+    				}
+    				else {
+    					new FavoritosUsuarioDAO().inseriPokemonEmFavoritos(poke.getId(), idUsuario);
+    					btAddFavoritos.setIcon(new ImageIcon(new Imagem().setNewImg(true, "Favorito", 20, 20 )));
+    				}
+    				
+    				new TelaInicial().criaAbaFavoritos();
+    				
+					
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+    		}
+    	};
     	
     	btAddFavoritos.addActionListener(acListener);
     	
     	return btAddFavoritos;
     }
     
-    public JButton criaBotaoAddCapturados(Pokemon poke, int idUsuario) {
+    public JButton criaBotaoAddCapturados(Pokemon poke, int idUsuario, JPanel painel) throws SQLException {
+    	JButton btAddCapturados = new JButton();
+        
+    	boolean adicionado = new CapturadosUsuarioDAO().selecionaPokemonFromCapturadosByUserAndPoke(idUsuario, poke.getId());
+    	System.out.println("passei");
+    	btAddCapturados.setIcon(new ImageIcon(new Imagem().setNewImg(adicionado, "Capturado", 20, 20 )));
+    	btAddCapturados.setToolTipText("Adicionar/Retirar dos capturados");
+    	
     	ActionListener acListener = new ActionListener() {
     		public void actionPerformed(ActionEvent e) {
-    			
+    			try {
+    				if(adicionado) {
+    					System.out.println("sss");
+    					new CapturadosUsuarioDAO().retiraPokemonEmCapturados(poke.getId(), idUsuario);
+    					System.out.println("aush");
+    					btAddCapturados.setIcon(new ImageIcon(new Imagem().setNewImg(false, "Capturado", 20, 20 )));
+    				}
+    				else {
+    					new CapturadosUsuarioDAO().inseriPokemonEmCapturados(poke.getId(), idUsuario);
+    					btAddCapturados.setIcon(new ImageIcon(new Imagem().setNewImg(true, "Capturado", 20, 20 )));
+    				}
+    				
+    				new TelaInicial().criaAbaCapturados();
+    				
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
     		}
     	};
-    	
-    	JButton btAddCapturados = new JButton();
-    	
-    	/*btAddCapturados.setHorizontalTextPosition(SwingConstants.CENTER);
-        btAddCapturados.setForeground(Color.WHITE);
-        btAddCapturados.setFont(new Font("Arial", Font.BOLD, 40));
-        btAddCapturados.setMargin(new Insets(0, 0, 0, 0));
-        btAddCapturados.setBorder(null);
-        btAddCapturados.setOpaque(false);
-        btAddCapturados.setContentAreaFilled(false);
-        btAddCapturados.setBorderPainted(false);*/
-        
-    	btAddCapturados.setIcon(new ImageIcon(new Imagem("../imagensBotoes/nao-capturado.png", 20, 20).getNewImg()));
-    	btAddCapturados.setToolTipText("Adicionar aos capturados");
     	
     	btAddCapturados.addActionListener(acListener);
     	
     	return btAddCapturados;
     }
     
-    public JButton criaBotaoAddDesejos(Pokemon poke) {
+    public JButton criaBotaoAddDesejos(Pokemon poke, int idUsuario, JPanel painel) throws SQLException {
+    	JButton btAddDesejos = new JButton();
+        
+    	boolean adicionado = new DesejadosUsuarioDAO().selecionaPokemonFromDesejadosByUserAndPoke(idUsuario, poke.getId());
+    	
+    	btAddDesejos.setIcon(new ImageIcon(new Imagem().setNewImg(adicionado, "Desejado", 20, 20 )));
+    	btAddDesejos.setToolTipText("Adicionar/Retirar dos desejados");
+    	
     	ActionListener acListener = new ActionListener() {
     		public void actionPerformed(ActionEvent e) {
-    			System.out.println("adicionado aos desejados o pokemon: "+poke.getNome());
+    			try {
+    				if(adicionado) {
+    					new DesejadosUsuarioDAO().retiraPokemonEmDesejados(poke.getId(), idUsuario);
+    					btAddDesejos.setIcon(new ImageIcon(new Imagem().setNewImg(false, "Desejado", 20, 20 )));
+    				}
+    				else {
+    					new DesejadosUsuarioDAO().inseriPokemonEmDesejados(poke.getId(), idUsuario);
+    					btAddDesejos.setIcon(new ImageIcon(new Imagem().setNewImg(true, "Desejado", 20, 20 )));
+    				}
+    				
+    				new TelaInicial().criaAbaDesejados();
+    				
+					
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
     		}
     	};
-    	
-    	JButton btAddDesejos = new JButton();
-    	
-    	/*btAddDesejos.setHorizontalTextPosition(SwingConstants.CENTER);
-        btAddDesejos.setForeground(Color.WHITE);
-        btAddDesejos.setFont(new Font("Arial", Font.BOLD, 40));
-        btAddDesejos.setMargin(new Insets(0, 0, 0, 0));
-        btAddDesejos.setBorder(null);
-        btAddDesejos.setOpaque(false);
-        btAddDesejos.setContentAreaFilled(false);
-        btAddDesejos.setBorderPainted(false);*/
-        
-    	btAddDesejos.setIcon(new ImageIcon(new Imagem("../imagensBotoes/nao-desejado.png", 20, 20).getNewImg()));
-    	btAddDesejos.setToolTipText("Adicionar nos desejados");
     	
     	btAddDesejos.addActionListener(acListener);
     	

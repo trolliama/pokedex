@@ -15,10 +15,27 @@ public class Imagem {
     
     private Image newImg;
     
-    public Imagem(String caminho, int width, int height) {
-
+    public Image setNewImg(boolean adicionado, String caminho, int width, int height) {
+    	if(adicionado) {
+    		System.out.println("x");
+    		caminho = "../imagensBotoes/"+caminho+".png";
+    	}
+    	else {
+    		System.out.println("r");
+    		caminho = "../imagensBotoes/nao-"+caminho+".png";
+    	}
     	ImageIcon img = new ImageIcon(getClass().getResource(caminho));
     	this.newImg = img.getImage().getScaledInstance(width, height, java.awt.Image.SCALE_SMOOTH);
+    	
+    	return getNewImg();
+    }
+    
+    public Image setNewImg(String caminho, int width, int height) {
+    	
+    	ImageIcon img = new ImageIcon(getClass().getResource("../imagensPokemon/"+caminho+".png"));
+    	this.newImg = img.getImage().getScaledInstance(width, height, java.awt.Image.SCALE_SMOOTH);
+    	
+    	return getNewImg();
     }
     
     public Image getNewImg(){

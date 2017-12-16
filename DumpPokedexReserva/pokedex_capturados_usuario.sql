@@ -18,6 +18,8 @@
 --
 -- Table structure for table `capturados_usuario`
 --
+CREATE DATABASE  IF NOT EXISTS `pokedex` /*!40100 DEFAULT CHARACTER SET latin1 */;
+USE `pokedex`;
 
 DROP TABLE IF EXISTS `capturados_usuario`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;

@@ -26,7 +26,7 @@ import javax.swing.*;
 public class TelaInicial extends JFrame{
     
 	private Dimension dimension;
-	private int idUsuario;
+	private int idUsuario = 1;
 	private JTabbedPane jtp;
 	
     public TelaInicial() throws SQLException{
@@ -37,7 +37,9 @@ public class TelaInicial extends JFrame{
         this.setLocationRelativeTo(null);
         this.getContentPane().setLayout(new BorderLayout());
         
-        criaAbas();
+    	this.jtp = new JTabbedPane();
+        add(this.jtp,BorderLayout.NORTH);
+       
     }
     
     public void setSizeJFrame() {
@@ -50,16 +52,35 @@ public class TelaInicial extends JFrame{
     }
     
     public void criaAbas() throws SQLException {
-    	
-    	this.jtp = new JTabbedPane();
-        add(this.jtp,BorderLayout.NORTH);
         
-        PainelTabAllPokemos painelTAP = new PainelTabAllPokemos(this.dimension);
-        painelTAP.listaOsPokemons();
+        criaAbaAllPokes();
+        criaAbaDesejados();
+        criaAbaFavoritos();
+        criaAbaCapturados();
+        
+    }
+    
+    public void criaAbaAllPokes() throws SQLException {
+    	System.out.println("a");
+    	PainelTabAllPokemos painelTAP = new PainelTabAllPokemos(this.dimension, this.idUsuario);
         this.jtp.addTab("Pokemons", painelTAP.criaScrollPane());
-        
-        PainelTabDesejadosPokemons painelTDP = new PainelTabDesejadosPokemons(this.dimension, this.idUsuario);
-        painelTDP.listaOsPokemons();
+    }
+    
+    public void criaAbaDesejados() throws SQLException {
+    	System.out.println("b");
+    	PainelTabDesejadosPokemons painelTDP = new PainelTabDesejadosPokemons(this.dimension, this.idUsuario);
         this.jtp.addTab("Desejados", painelTDP.criaScrollPane());
+    }
+    
+    public void criaAbaFavoritos() throws SQLException {
+    	System.out.println("c");
+    	PainelTabFavoritosPokemons painelTFP = new PainelTabFavoritosPokemons(this.dimension, this.idUsuario);
+        this.jtp.addTab("Favoritos", painelTFP.criaScrollPane());
+    }
+    
+    public void criaAbaCapturados() throws SQLException{
+    	System.out.println("d");
+    	PainelTabCapturadosPokemons painelTCP = new PainelTabCapturadosPokemons(this.dimension, this.idUsuario);
+    	this.jtp.addTab("Capturados", painelTCP.criaScrollPane());
     }
 }

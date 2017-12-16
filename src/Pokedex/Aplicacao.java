@@ -17,7 +17,7 @@ public class Aplicacao {
     public static void main(String args[]) throws SQLException{
     	new StyleInterface();
 		TelaInicial wn = new TelaInicial();
-		System.out.println("a");
+		wn.criaAbas();
     	wn.setVisible(true);
         
     }

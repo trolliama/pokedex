@@ -3,16 +3,14 @@ package Pokedex;
 import java.awt.Dimension;
 import java.sql.SQLException;
 
-
-public class PainelTabDesejadosPokemons extends PaineisTelaInicial{
-	
+public class PainelTabCapturadosPokemons extends PaineisTelaInicial{
 	private ListaDePokemons pkLista;
 
-	public PainelTabDesejadosPokemons(Dimension dimension,int idUsuario) throws SQLException {
+	public PainelTabCapturadosPokemons(Dimension dimension,int idUsuario) throws SQLException {
 		super(dimension, idUsuario);
-		
-		pkLista = new ListaDePokemons(new DesejadosUsuarioDAO().selecionaPokemonFromCapturadosByUsuario(idUsuario));
-		
+		System.out.println("cheguei");
+		pkLista = new ListaDePokemons(new CapturadosUsuarioDAO().selecionaPokemonFromCapturadosByUsuario(idUsuario));
+		System.out.println("não cheguei");
 		chamalistarPokemons();
 	}
 	
