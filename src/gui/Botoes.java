@@ -32,7 +32,7 @@ public class Botoes{
         
         ActionListener callEspecPoke = new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-        		System.out.println(poke.getNome());
+        		System.out.println(poke.getCategoria());
         	}
         };
         botaoPoke.addActionListener(callEspecPoke);

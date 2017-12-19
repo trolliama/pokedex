@@ -30,7 +30,7 @@ public class PokemonDAO {
 		
 		try {
 			Statement stmt = this.con.createStatement();
-			String sqlStatement = String.format("select * from pokemons where id = %d", id);
+			String sqlStatement = String.format("select * from pokemons as pk join categorias as ct on ct.id=pk.id_categoria where pk.id = %d", id);
 			ResultSet rs = stmt.executeQuery(sqlStatement);
 			while(rs.next()) {
 				pokemon.setId(rs.getInt("id"));
@@ -44,7 +44,7 @@ public class PokemonDAO {
 				pokemon.setDescricao(rs.getString("descricao"));
 				pokemon.setAltura(rs.getDouble("altura"));
 				pokemon.setPeso(rs.getDouble("peso"));
-				pokemon.setCategoria(rs.getString("categoria"));
+				pokemon.setCategoria(rs.getString("ct.categoria"));
 			}
 		}catch(SQLException e){
 			System.out.println(e);

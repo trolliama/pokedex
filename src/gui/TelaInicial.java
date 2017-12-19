@@ -38,7 +38,7 @@ public class TelaInicial extends JFrame{
 	private int idUsuario = 1;
 	private JTabbedPane jtp;
 	private ListaDePokemons pkLista;
-	private PaineisTelaInicial[] paineis = new PaineisTelaInicial[4];
+	private ArrayList<PaineisTelaInicial> paineis = new ArrayList<PaineisTelaInicial>();
 	private GridBagConstraints c;
 	
     public TelaInicial() throws SQLException{
@@ -62,7 +62,7 @@ public class TelaInicial extends JFrame{
     
     public void atualizaFrame(Pokemon poke, GridBagConstraints c, JPanel comp) throws SQLException {
     	
-    	paineis[0].atualizar(poke, poke.getId()-1, idUsuario, c, comp, this);
+    	paineis.get(0).atualizar(poke, poke.getId()-1, idUsuario, c, comp, this);
 
     	this.repaint();
     }
@@ -84,7 +84,7 @@ public class TelaInicial extends JFrame{
     public void criaPaineis() {
 
     	for(int i =0; i<4; i++) {
-    		this.paineis[i] = new PaineisTelaInicial( this.dimension ,this.idUsuario);
+    		this.paineis.add(new PaineisTelaInicial( this.dimension ,this.idUsuario));
     		}
     }
     
@@ -99,10 +99,9 @@ public class TelaInicial extends JFrame{
     	JPanel stretch = new JPanel();
     	for(Pokemon poke: pkLista.getLista()) {
     		
-
-    		paineis[0].configuraConstraint();
-    		paineis[0].listaOsPokemons(poke, this.idUsuario, this);
-    		paineis[0].addPaineis();
+    		paineis.get(0).configuraConstraint();
+    		paineis.get(0).listaOsPokemons(poke, this.idUsuario, this);
+    		paineis.get(0).addPaineis();
     		
     		Adicionar(poke);
     	}
@@ -118,30 +117,26 @@ public class TelaInicial extends JFrame{
     }
     
     public void Adicionar(Pokemon poke) throws SQLException {
+    	boolean [] bools = {new DesejadosUsuarioDAO().selecionaPokemonFromDesejadosByUserAndPoke(this.idUsuario, poke.getId()),
+    			new FavoritosUsuarioDAO().selecionaPokemonFromFavoritosByUserAndPoke(this.idUsuario, poke.getId()),
+    			new CapturadosUsuarioDAO().selecionaPokemonFromCapturadosByUserAndPoke(this.idUsuario, poke.getId())};
     	
-    	if(new DesejadosUsuarioDAO().selecionaPokemonFromDesejadosByUserAndPoke(this.idUsuario, poke.getId())) {
-    		paineis[1].configuraConstraint();
-    		paineis[1].listaOsPokemons(poke, this.idUsuario, this);
-    		paineis[1].addPaineis();
-    	}
-		if(new FavoritosUsuarioDAO().selecionaPokemonFromFavoritosByUserAndPoke(this.idUsuario, poke.getId())) {
-			paineis[2].configuraConstraint();
-			paineis[2].listaOsPokemons(poke, this.idUsuario, this);
-			paineis[2].addPaineis();
-    	}
-		if(new CapturadosUsuarioDAO().selecionaPokemonFromCapturadosByUserAndPoke(this.idUsuario, poke.getId())) {
-			paineis[2].configuraConstraint();
-			paineis[3].listaOsPokemons(poke, this.idUsuario, this);
-			paineis[3].addPaineis();
+    	for(int i=0;i<3;i++) {
+    		if(bools[i]) {
+    			paineis.get(i+1).configuraConstraint();
+        		paineis.get(i+1).listaOsPokemons(poke, this.idUsuario, this);
+        		paineis.get(i+1).addPaineis();
+    		}
     	}
     }
     
     public void addOnTabPane() {
+    	String[] listaStr= {"Pokemons","Desejados","Favoritos","Capturados"};
     	
-    	this.jtp.addTab("Pokemons", paineis[0].criaScrollPane());
-    	this.jtp.add("Desejados", paineis[1].criaScrollPane());
-    	this.jtp.add("Favoritos", paineis[2].criaScrollPane());
-    	this.jtp.add("Capturados", paineis[3].criaScrollPane());
+    	for(int i=0;i<4;i++) {
+        	this.jtp.addTab(listaStr[i], paineis.get(i).criaScrollPane());
+    		
+    	}
     	
     }
 }
