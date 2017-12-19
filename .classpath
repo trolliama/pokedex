@@ -3,5 +3,8 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="lib" path="/home/caio/eclipse-workspace/RemoteSystemsTempFiles/mysql-connector-java-5.1.45/mysql-connector-java-5.1.45-bin.jar"/>
+	<classpathentry kind="lib" path="/home/caio/Downloads/Pokedex-master/jcommon-1.0.23.jar"/>
+	<classpathentry kind="lib" path="/home/caio/Downloads/Pokedex-master/jfreechart-1.0.19.jar"/>
+	<classpathentry kind="lib" path="/home/caio/Downloads/Pokedex-master/jfreechart-1.0.19-swt.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
