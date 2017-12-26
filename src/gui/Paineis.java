@@ -92,7 +92,8 @@ public class Paineis extends JPanel{
         public void listaOsPokemons(Pokemon poke, int idUsuario, TelaInicial tela, ArrayList<PaineisInformacoesDoUsuario> paineis) throws SQLException{
             Image img = new Imagem().setNewImg(poke.getId(), 140, 140);
 	
-            getPainelTemporarioBL().criaBotoes(img, poke, idUsuario, tela, paineis);
+            JPanel pnl = getPainelTemporarioBL().criaBotoes(img, poke, idUsuario, tela, paineis);
+            getPainelTemporarioBL().criaTemporarioBoxLayout(poke.getNome(), pnl);
             
 	}
 	

@@ -7,51 +7,56 @@ import java.awt.Image;
 import java.awt.Insets;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 import pokedex.Pokemon;
 
 public class PainelBorderLayout extends JPanel{
 	
-	private GridBagConstraints c;
-	private JPanel painelTemporarioFL;
+    private GridBagConstraints c;
+    private JPanel painelTemporarioBoxL;
 
 	public PainelBorderLayout() {
 		setLayout(new BorderLayout());
 		
-		criaPainelTemporarioFlowLayout();
-		
 	}
 	
+        public void criaTemporarioBoxLayout(String nomePoke, JPanel painelFL) throws SQLException{
+            JLabel lb = new JLabel(nomePoke);
+            lb.setFont(new Font("SansSerif",Font.PLAIN, 16));
+            lb.setHorizontalAlignment(SwingConstants.CENTER);
+            
+            this.painelTemporarioBoxL = new JPanel(new BorderLayout());
+            
+            this.painelTemporarioBoxL.add(lb,BorderLayout.NORTH);
+            this.painelTemporarioBoxL.add(painelFL);
+            
+            add(this.painelTemporarioBoxL,BorderLayout.SOUTH);
+        }
 
-	public void criaPainelTemporarioFlowLayout() {
-		this.painelTemporarioFL = new JPanel();
-		add(this.painelTemporarioFL, BorderLayout.SOUTH);
+	public JPanel criaBotoes(Image img, Pokemon poke, int idUsuario,TelaInicial tela, ArrayList<PaineisInformacoesDoUsuario> paineis) throws SQLException {
+		Botoes bts = new Botoes(tela);
+                JPanel painelTemporarioFL = new JPanel();
+                
+                add(bts.criaJButtonPokemon(img, poke), BorderLayout.CENTER);
+		painelTemporarioFL.add(bts.criaBotaoAddFavoritos(poke, idUsuario, paineis.get(1)));
+		painelTemporarioFL.add(bts.criaBotaoAddCapturados(poke, idUsuario, paineis.get(2)));
+		painelTemporarioFL.add(bts.criaBotaoAddDesejos(poke, idUsuario, paineis.get(0)));
+                
+                return painelTemporarioFL;
 	}
 	
 	public void criaBotoes(Image img, Pokemon poke) {
                 JLabel  lb = new JLabel(poke.getNome());
-		lb.setFont(new Font("Dialog", Font.PLAIN, 18));
-                lb.setAlignmentX(CENTER_ALIGNMENT);
+		lb.setFont(new Font("Dialog", Font.PLAIN, 16));
+                lb.setHorizontalAlignment(SwingConstants.CENTER);
                 
-                add(lb,BorderLayout.NORTH);
+                add(lb,BorderLayout.SOUTH);
 		add(new Botoes(null).criaJButtonPokemon(img, poke));
-	}
-	
-	public void criaBotoes(Image img, Pokemon poke, int idUsuario,TelaInicial tela, ArrayList<PaineisInformacoesDoUsuario> paineis) throws SQLException{
-		Botoes bts = new Botoes(tela);
-                JLabel  lb = new JLabel(poke.getNome());
-		lb.setFont(new Font("Dialog", Font.PLAIN, 18));
-                lb.setAlignmentX(CENTER_ALIGNMENT);
-                        
-                add(lb,BorderLayout.NORTH);
-		add(bts.criaJButtonPokemon(img, poke), BorderLayout.CENTER);
-		this.painelTemporarioFL.add(bts.criaBotaoAddFavoritos(poke, idUsuario, paineis.get(1)));
-		this.painelTemporarioFL.add(bts.criaBotaoAddCapturados(poke, idUsuario, this.getC()));
-		this.painelTemporarioFL.add(bts.criaBotaoAddDesejos(poke, idUsuario, this.getC()));
-		
 	}
 
 	public GridBagConstraints getC() {

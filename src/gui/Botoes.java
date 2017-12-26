@@ -46,7 +46,7 @@ public class Botoes{
     	
     	JButton btAddFavoritos = new JButton();
     	
-		btAddFavoritos.setIcon(new ImageIcon(new Imagem().setNewImg(new FavoritosUsuarioDAO().selecionaPokemonFromFavoritosByUserAndPoke(idUsuario, poke.getId()), "Favorito", 20, 20 )));
+        btAddFavoritos.setIcon(new ImageIcon(new Imagem().setNewImg(new FavoritosUsuarioDAO().selecionaPokemonFromFavoritosByUserAndPoke(idUsuario, poke.getId()), "Favorito", 20, 20 )));
     	
     	
     	btAddFavoritos.setToolTipText("Adicionar/Retirar dos Favoritos");
@@ -85,34 +85,37 @@ public class Botoes{
     	return btAddFavoritos;
     }
     
-    public JButton criaBotaoAddCapturados(Pokemon poke, int idUsuario, GridBagConstraints c) throws SQLException {
+    public JButton criaBotaoAddCapturados(Pokemon poke, int idUsuario,PaineisInformacoesDoUsuario painel) throws SQLException {
     	JButton btAddCapturados = new JButton();
         
     	btAddCapturados.setIcon(new ImageIcon(new Imagem().setNewImg( new CapturadosUsuarioDAO().selecionaPokemonFromCapturadosByUserAndPoke(idUsuario, poke.getId()), "Capturado", 20, 20 )));
     	btAddCapturados.setToolTipText("Adicionar/Retirar dos capturados");
     	
     	ActionListener acListener = new ActionListener() {
-    		public void actionPerformed(ActionEvent e) {
-    			try {
-    				boolean adicionado = new CapturadosUsuarioDAO().selecionaPokemonFromCapturadosByUserAndPoke(idUsuario, poke.getId());
-    				
-    				if(adicionado) {
-    					adicionado = false;
-    					new CapturadosUsuarioDAO().retiraPokemonEmCapturados(poke.getId(), idUsuario);
-    					btAddCapturados.setIcon(new ImageIcon(new Imagem().setNewImg(adicionado, "Capturado", 20, 20 )));
-    				}
-    				else {
-    					adicionado = true;
-    					new CapturadosUsuarioDAO().inseriPokemonEmCapturados(poke.getId(), idUsuario);
-    					btAddCapturados.setIcon(new ImageIcon(new Imagem().setNewImg(adicionado, "Capturado", 20, 20 )));
-    				}
-    				
-    				
-				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-    		}
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    boolean adicionado = new CapturadosUsuarioDAO().selecionaPokemonFromCapturadosByUserAndPoke(idUsuario, poke.getId());
+
+                    if(adicionado) {
+                        adicionado = false;
+                        new CapturadosUsuarioDAO().retiraPokemonEmCapturados(poke.getId(), idUsuario);
+                        btAddCapturados.setIcon(new ImageIcon(new Imagem().setNewImg(adicionado, "Capturado", 20, 20 )));
+                        tela.retirarEspecifico( painel, new ListaDePokemons(new CapturadosUsuarioDAO().selecionaPokemonFromCapturadosByUsuario(idUsuario)));
+                    }
+                    else {
+                        adicionado = true;
+                        new CapturadosUsuarioDAO().inseriPokemonEmCapturados(poke.getId(), idUsuario);
+                        btAddCapturados.setIcon(new ImageIcon(new Imagem().setNewImg(adicionado, "Capturado", 20, 20 )));
+                        
+                        tela.adicionarEspecifico(poke, painel, new ListaDePokemons(new CapturadosUsuarioDAO().selecionaPokemonFromCapturadosByUsuario(idUsuario)));
+                    }
+
+
+                } catch (SQLException e1) {
+                    // TODO Auto-generated catch block
+                    e1.printStackTrace();
+                }
+            }
     	};
     	
     	btAddCapturados.addActionListener(acListener);
@@ -120,34 +123,34 @@ public class Botoes{
     	return btAddCapturados;
     }
     
-    public JButton criaBotaoAddDesejos(Pokemon poke, int idUsuario, GridBagConstraints c) throws SQLException {
+    public JButton criaBotaoAddDesejos(Pokemon poke, int idUsuario,PaineisInformacoesDoUsuario painel) throws SQLException {
     	JButton btAddDesejos = new JButton();
         
     	btAddDesejos.setIcon(new ImageIcon(new Imagem().setNewImg(new DesejadosUsuarioDAO().selecionaPokemonFromDesejadosByUserAndPoke(idUsuario, poke.getId()), "Desejado", 20, 20 )));
     	btAddDesejos.setToolTipText("Adicionar/Retirar dos desejados");
     	
     	ActionListener acListener = new ActionListener() {
-    		public void actionPerformed(ActionEvent e) {
-    			try {
-    				boolean adicionado = new DesejadosUsuarioDAO().selecionaPokemonFromDesejadosByUserAndPoke(idUsuario, poke.getId());
-    				
-    				if(adicionado) {
-    					adicionado = false;
-    					new DesejadosUsuarioDAO().retiraPokemonEmDesejados(poke.getId(), idUsuario);
-    					btAddDesejos.setIcon(new ImageIcon(new Imagem().setNewImg(adicionado, "Desejado", 20, 20 )));
-    				}
-    				else {
-    					adicionado = true;
-    					new DesejadosUsuarioDAO().inseriPokemonEmDesejados(poke.getId(), idUsuario);
-    					btAddDesejos.setIcon(new ImageIcon(new Imagem().setNewImg(adicionado, "Desejado", 20, 20 )));
-    				}
-    				
-    				
-					
-				} catch (SQLException e1) {
-					e1.printStackTrace();
-				}
-    		}
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    boolean adicionado = new DesejadosUsuarioDAO().selecionaPokemonFromDesejadosByUserAndPoke(idUsuario, poke.getId());
+
+                    if(adicionado) {
+                        adicionado = false;
+                        new DesejadosUsuarioDAO().retiraPokemonEmDesejados(poke.getId(), idUsuario);
+                        btAddDesejos.setIcon(new ImageIcon(new Imagem().setNewImg(adicionado, "Desejado", 20, 20 )));
+                        tela.retirarEspecifico(painel, new ListaDePokemons(new DesejadosUsuarioDAO().selecionaPokemonFromDesejadosByUsuario(idUsuario)));
+                    }
+                    else {
+                        adicionado = true;
+                        new DesejadosUsuarioDAO().inseriPokemonEmDesejados(poke.getId(), idUsuario);
+                        btAddDesejos.setIcon(new ImageIcon(new Imagem().setNewImg(adicionado, "Desejado", 20, 20 )));
+                        tela.adicionarEspecifico(poke, painel, new ListaDePokemons(new DesejadosUsuarioDAO().selecionaPokemonFromDesejadosByUsuario(idUsuario)));
+                    }
+
+                } catch (SQLException e1) {
+                    e1.printStackTrace();
+                }
+            }
     	};
     	
     	btAddDesejos.addActionListener(acListener);
