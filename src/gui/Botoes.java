@@ -8,12 +8,12 @@ import java.sql.SQLException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JPanel;
 
 import connections.CapturadosUsuarioDAO;
 import connections.DesejadosUsuarioDAO;
 import connections.FavoritosUsuarioDAO;
 import pokedex.Imagem;
+import pokedex.ListaDePokemons;
 import pokedex.Pokemon;
 
 public class Botoes{
@@ -31,6 +31,7 @@ public class Botoes{
         botaoPoke.setIcon(new ImageIcon(img));
         
         ActionListener callEspecPoke = new ActionListener() {
+                @Override
         	public void actionPerformed(ActionEvent e) {
         		System.out.println(poke.getCategoria());
         	}
@@ -41,7 +42,7 @@ public class Botoes{
     	
     }
     
-    public JButton criaBotaoAddFavoritos(Pokemon poke, int idUsuario, GridBagConstraints c, JPanel comp) throws SQLException{
+    public JButton criaBotaoAddFavoritos(Pokemon poke, int idUsuario,PaineisInformacoesDoUsuario painel) throws SQLException{
     	
     	JButton btAddFavoritos = new JButton();
     	
@@ -51,29 +52,33 @@ public class Botoes{
     	btAddFavoritos.setToolTipText("Adicionar/Retirar dos Favoritos");
     	
     	ActionListener acListener = new ActionListener() {
-    		public void actionPerformed(ActionEvent e) {
-    			try {
-    				boolean adicionado = new FavoritosUsuarioDAO().selecionaPokemonFromFavoritosByUserAndPoke(idUsuario, poke.getId());
-    				
-    				if(adicionado) {
-    					adicionado = false;
-    					new FavoritosUsuarioDAO().retiraPokemonEmFavoritos(poke.getId(), idUsuario);
-    					btAddFavoritos.setIcon(new ImageIcon(new Imagem().setNewImg(adicionado, "Favorito", 20, 20 )));
-    				}
-    				else {
-    					adicionado = true;
-    					new FavoritosUsuarioDAO().inseriPokemonEmFavoritos(poke.getId(), idUsuario);
-    					btAddFavoritos.setIcon(new ImageIcon(new Imagem().setNewImg(adicionado, "Favorito", 20, 20 )));
-    				}
-    				
-    				tela.atualizaFrame(poke, c, comp);
-					
-				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-    		}
-    	};
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    boolean adicionado = new FavoritosUsuarioDAO().selecionaPokemonFromFavoritosByUserAndPoke(idUsuario, poke.getId());
+    	    	
+                    if(adicionado) {
+                        adicionado = false;
+                        new FavoritosUsuarioDAO().retiraPokemonEmFavoritos(poke.getId(), idUsuario);
+                        btAddFavoritos.setIcon(new ImageIcon(new Imagem().setNewImg(adicionado, "Favorito", 20, 20 )));
+    		    	
+                        tela.retirarEspecifico( painel, new ListaDePokemons(new FavoritosUsuarioDAO().selecionaPokemonFromFavoritosByUsuario(idUsuario)));
+                    }
+                    else {
+                        adicionado = true;
+                        new FavoritosUsuarioDAO().inseriPokemonEmFavoritos(poke.getId(), idUsuario);
+                        btAddFavoritos.setIcon(new ImageIcon(new Imagem().setNewImg(adicionado, "Favorito", 20, 20 )));
+    		    	
+                        tela.adicionarEspecifico(poke, painel, new ListaDePokemons(new FavoritosUsuarioDAO().selecionaPokemonFromFavoritosByUsuario(idUsuario)));
+                    }
+                    
+                    tela.repaint();
+				
+                } catch (SQLException e1) {
+                    // TODO Auto-generated catch block
+                    e1.printStackTrace();
+                }
+            }
+        };
     	
     	btAddFavoritos.addActionListener(acListener);
     	
