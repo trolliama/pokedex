@@ -9,13 +9,14 @@ import java.sql.SQLException;
 import javax.swing.JPanel;
 
 import pokedex.Imagem;
+import pokedex.ListaDePokemons;
 import pokedex.Pokemon;
 
 public class PaineisInformacoesDoUsuario extends Paineis{
 	
 
-    public PaineisInformacoesDoUsuario(Dimension dimension) {
-        super(dimension);
+    public PaineisInformacoesDoUsuario(String nomeAba, Dimension dimension,ListaDePokemons listaPk) {
+        super(nomeAba,dimension,listaPk);
 	
     }
 	
@@ -35,7 +36,7 @@ public class PaineisInformacoesDoUsuario extends Paineis{
     	
     	Image img = new Imagem().setNewImg(poke.getId(), 140, 140);
 		
-        getPainelTemporarioBL().criaBotoes(img, poke);
+        getPainelTemporarioBL().criaBotoes(img,getListaPoke(),poke);
     }
 	
 	

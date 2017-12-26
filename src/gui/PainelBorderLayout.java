@@ -12,6 +12,7 @@ import javax.swing.JLabel;
 
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+import pokedex.ListaDePokemons;
 
 import pokedex.Pokemon;
 
@@ -38,11 +39,11 @@ public class PainelBorderLayout extends JPanel{
             add(this.painelTemporarioBoxL,BorderLayout.SOUTH);
         }
 
-	public JPanel criaBotoes(Image img, Pokemon poke, int idUsuario,TelaInicial tela, ArrayList<PaineisInformacoesDoUsuario> paineis) throws SQLException {
+	public JPanel criaBotoes(Image img,ListaDePokemons listaPk, Pokemon poke, int idUsuario,TelaInicial tela, ArrayList<PaineisInformacoesDoUsuario> paineis) throws SQLException {
 		Botoes bts = new Botoes(tela);
                 JPanel painelTemporarioFL = new JPanel();
                 
-                add(bts.criaJButtonPokemon(img, poke), BorderLayout.CENTER);
+                add(bts.criaJButtonPokemon(img, poke,listaPk), BorderLayout.CENTER);
 		painelTemporarioFL.add(bts.criaBotaoAddFavoritos(poke, idUsuario, paineis.get(1)));
 		painelTemporarioFL.add(bts.criaBotaoAddCapturados(poke, idUsuario, paineis.get(2)));
 		painelTemporarioFL.add(bts.criaBotaoAddDesejos(poke, idUsuario, paineis.get(0)));
@@ -50,13 +51,13 @@ public class PainelBorderLayout extends JPanel{
                 return painelTemporarioFL;
 	}
 	
-	public void criaBotoes(Image img, Pokemon poke) {
+	public void criaBotoes(Image img,ListaDePokemons listaPk, Pokemon poke) {
                 JLabel  lb = new JLabel(poke.getNome());
 		lb.setFont(new Font("Dialog", Font.PLAIN, 16));
                 lb.setHorizontalAlignment(SwingConstants.CENTER);
                 
                 add(lb,BorderLayout.SOUTH);
-		add(new Botoes(null).criaJButtonPokemon(img, poke));
+		add(new Botoes(null).criaJButtonPokemon(img, poke, listaPk));
 	}
 
 	public GridBagConstraints getC() {

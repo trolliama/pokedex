@@ -18,11 +18,11 @@ public class Imagem {
     public Image setNewImg(boolean adicionado, String caminho, int width, int height) {
     	if(adicionado) {
     		System.out.println("x");
-    		caminho = "../imagensBotoes/"+caminho+".png";
+    		caminho = "../outrasImagens/"+caminho+".png";
     	}
     	else {
     		System.out.println("r");
-    		caminho = "../imagensBotoes/nao-"+caminho+".png";
+    		caminho = "../outrasImagens/nao-"+caminho+".png";
     	}
     	ImageIcon img = new ImageIcon(getClass().getResource(caminho));
     	this.newImg = img.getImage().getScaledInstance(width, height, java.awt.Image.SCALE_SMOOTH);
@@ -37,6 +37,13 @@ public class Imagem {
     	
     	return getNewImg();
     }
+    public Image setNewImg(String sexo,int width,int height){
+        ImageIcon img = new ImageIcon(getClass().getResource("../imagensPokemonSexo/"+sexo+".png"));
+        this.newImg = img.getImage().getScaledInstance(width, height, java.awt.Image.SCALE_SMOOTH);
+        
+        return getNewImg();
+    }
+    
     
     public Image getNewImg(){
         return this.newImg;

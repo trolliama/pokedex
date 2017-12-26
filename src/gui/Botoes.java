@@ -25,7 +25,7 @@ public class Botoes{
 		this.tela = tela;
 		
 	}
-    public JButton criaJButtonPokemon(Image img, Pokemon poke) {
+    public JButton criaJButtonPokemon(Image img, Pokemon poke, ListaDePokemons pokemonLista) {
     	
     	JButton botaoPoke = new JButton();
         botaoPoke.setIcon(new ImageIcon(img));
@@ -33,7 +33,7 @@ public class Botoes{
         ActionListener callEspecPoke = new ActionListener() {
                 @Override
         	public void actionPerformed(ActionEvent e) {
-        		System.out.println(poke.getCategoria());
+                    new MostraInfo(poke.getId(), pokemonLista);
         	}
         };
         botaoPoke.addActionListener(callEspecPoke);

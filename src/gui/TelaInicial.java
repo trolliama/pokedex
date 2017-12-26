@@ -22,6 +22,8 @@ import connections.CapturadosUsuarioDAO;
 import connections.DesejadosUsuarioDAO;
 import connections.FavoritosUsuarioDAO;
 import connections.PokemonDAO;
+import java.awt.Font;
+import pokedex.Imagem;
 
 /**
  *
@@ -79,11 +81,12 @@ public class TelaInicial extends JFrame{
     }
     
     public void criaPaineis() {
-    	this.painelAll = new Paineis(this.dimension );
+    	this.painelAll = new Paineis("Pokemos",this.dimension,this.pkLista );
     	
-    	for(int i =1; i<4; i++) {
-    		this.paineis.add(new PaineisInformacoesDoUsuario( this.dimension));
-    		}
+        String[] listaNomes = {"Desejos","Favoritos","Capturados"};
+    	for(String nome:listaNomes) {
+            this.paineis.add(new PaineisInformacoesDoUsuario(nome, this.dimension, this.pkLista));
+        }
     }
     
     public void criaAbas() throws SQLException {
@@ -153,11 +156,10 @@ public class TelaInicial extends JFrame{
     }
     
     public void addOnTabPane() {
-    	String[] listaStr= {"Desejados","Favoritos","Capturados"};
-    	this.jtp.addTab("Pokemons", painelAll.criaScrollPane());
+    	this.jtp.addTab(painelAll.getNomeAba(), painelAll.criaScrollPane());
     	
-    	for(int i=0;i<3;i++) {
-        	this.jtp.addTab(listaStr[i], paineis.get(i).criaScrollPane());
+    	for(PaineisInformacoesDoUsuario painel:paineis) {
+        	this.jtp.addTab(painel.getNomeAba(), painel.criaScrollPane());
     		
     	}
     	
@@ -167,6 +169,15 @@ public class TelaInicial extends JFrame{
         
         int width = (int) Math.floor(this.dimension.getWidth()/168);
         
+        if(painel.getComponentCount() == 0 ){
+            ImageIcon icon;
+            icon = new ImageIcon(new Imagem().setNewImg(true,"PikachuSentado",200,200));
+            painel.add(new JLabel(icon));
+            
+            JLabel texto = new JLabel("     Desculpe você ainda não tem pokemos adicionados nos "+painel.getNomeAba());
+            texto.setFont(new Font("SansSerif",Font.PLAIN, 20));
+            painel.add(texto);
+        }
         if (painel.getComponentCount() <= width) {
             System.out.println(painel.getComponentCount());
             painel.add(new JPanel(), this.c);
