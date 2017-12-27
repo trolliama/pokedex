@@ -20,7 +20,7 @@ public class Aplicacao {
 	
     public static void main(String args[]) throws SQLException{
         new StyleInterface();
-        new TelaInicial(1);
+        new TelaLoginD2();
         
     }
 }
