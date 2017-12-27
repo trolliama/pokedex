@@ -18,32 +18,27 @@ USE `pokedex`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `capturados_usuario`
+-- Table structure for table `categorias`
 --
 
-DROP TABLE IF EXISTS `capturados_usuario`;
+DROP TABLE IF EXISTS `categorias`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `capturados_usuario` (
+CREATE TABLE `categorias` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_pokemon` int(11) DEFAULT NULL,
-  `id_usuario` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `id_usuario` (`id_usuario`),
-  KEY `id_pokemon` (`id_pokemon`),
-  CONSTRAINT `capturados_usuario_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id`),
-  CONSTRAINT `capturados_usuario_ibfk_2` FOREIGN KEY (`id_pokemon`) REFERENCES `pokemons` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
+  `categoria` varchar(25) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=56 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `capturados_usuario`
+-- Dumping data for table `categorias`
 --
 
-LOCK TABLES `capturados_usuario` WRITE;
-/*!40000 ALTER TABLE `capturados_usuario` DISABLE KEYS */;
-INSERT INTO `capturados_usuario` VALUES (8,25,1),(9,6,1),(10,8,1),(11,2,1),(12,3,1),(13,4,1),(14,5,1),(15,9,1),(16,10,1),(17,14,1),(18,15,1);
-/*!40000 ALTER TABLE `capturados_usuario` ENABLE KEYS */;
+LOCK TABLES `categorias` WRITE;
+/*!40000 ALTER TABLE `categorias` DISABLE KEYS */;
+INSERT INTO `categorias` VALUES (1,'grão'),(2,'largato'),(3,'chama'),(4,'tartaruga pequena'),(5,'tartaruga'),(6,'marisco'),(7,'minhoca'),(8,'casulo'),(9,'borboleta'),(10,'minhoca peluda'),(11,'abelha venenosa'),(12,'passaro pequeno'),(13,'passaro'),(14,'rato'),(15,'cobra'),(16,'pino venenoso'),(17,'broca'),(18,'fada'),(19,'raposa'),(20,'balão'),(21,'morcego'),(22,'erva daninha'),(23,'flor'),(24,'cogumelo'),(25,'inseto'),(26,'mariposa venenosa'),(27,'toupeira'),(28,'gato pequeno'),(29,'gato classico'),(30,'pato'),(31,'porco macaco'),(32,'cachorro'),(33,'lendario'),(34,'girino'),(35,'psi'),(36,'poderoso'),(37,'apanhador de moscas'),(38,'medusa'),(39,'pedra'),(40,'super pedra'),(41,'cavalo de fogo'),(42,'Dopey'),(43,'Carangueijo hermitão'),(44,'magnetico'),(45,'pato selvagem'),(46,'passaro estranho'),(47,'leão marinho'),(48,'gosma'),(49,'concha'),(50,'gás'),(51,'fantasma'),(52,'cobra de pedra'),(53,'hipnotico'),(54,'caraguejo'),(55,'bola');
+/*!40000 ALTER TABLE `categorias` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -55,4 +50,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-12-19 20:17:16
+-- Dump completed on 2017-12-27  0:58:51

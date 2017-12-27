@@ -18,27 +18,27 @@ USE `pokedex`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `habilidades`
+-- Table structure for table `tipos`
 --
 
-DROP TABLE IF EXISTS `habilidades`;
+DROP TABLE IF EXISTS `tipos`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `habilidades` (
+CREATE TABLE `tipos` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nome_habilidade` varchar(50) DEFAULT NULL,
+  `tipo` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `habilidades`
+-- Dumping data for table `tipos`
 --
 
-LOCK TABLES `habilidades` WRITE;
-/*!40000 ALTER TABLE `habilidades` DISABLE KEYS */;
-INSERT INTO `habilidades` VALUES (1,'Crescimento extenso'),(2,'Chama'),(3,'Torrente'),(4,'Escudo de Pó'),(5,'Pele Coberta'),(6,'Olhos Compostos'),(7,'Enxame'),(8,'Pés Emaranhado'),(9,'Olhos do Interesse'),(10,'Fugir'),(11,'Culhões'),(12,'Pele Coberta'),(13,'Intimidar'),(14,'Estatico'),(15,'Véu de Areia'),(16,'Veneno'),(17,'Rivalidade'),(18,'Charme Bonito'),(19,'Guarda Magico'),(20,'Fogo Instantâneo'),(21,'Competitivo'),(22,'Foco Interior'),(23,'Clorofila'),(24,'Pele Seca'),(25,'Esporo de Efeito'),(26,'Lente Matizada'),(27,'Pegar'),(28,'Tecnico'),(29,'Úmido'),(30,'Nona Nuvem'),(31,'Espirito Vital'),(32,'Ponto de Raiva'),(33,'Intimidar'),(34,'Absorvente de Agua'),(35,'Foco Interior'),(36,'Sincronizar'),(37,'Culhões'),(38,'Sem Guarda'),(39,'Corpo Claro'),(40,'Liquido Escorregadio'),(41,'Cabeçada de Pedra'),(42,'Robusto'),(43,'Desatento'),(44,'Um Tempo'),(45,'Robusto'),(46,'Pull de Imã'),(47,'Madrugar'),(48,'Gordura Grossa'),(49,'Fedor'),(50,'Leveza'),(51,'Insonia'),(52,'Imune a Som');
-/*!40000 ALTER TABLE `habilidades` ENABLE KEYS */;
+LOCK TABLES `tipos` WRITE;
+/*!40000 ALTER TABLE `tipos` DISABLE KEYS */;
+INSERT INTO `tipos` VALUES (1,'Fogo'),(2,'Voador'),(3,'Gelo'),(4,'Psíquico'),(5,'Grama'),(6,'Venenoso'),(7,'Terra'),(8,'Pedra'),(9,'Água'),(10,'Eletrico'),(11,'Planta'),(12,'Venenoso'),(13,'Normal'),(14,'Combate'),(15,'Aço'),(16,'Fada'),(17,'Sombrio'),(18,'Fantasma');
+/*!40000 ALTER TABLE `tipos` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -50,4 +50,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-12-19 20:17:16
+-- Dump completed on 2017-12-27  0:58:51

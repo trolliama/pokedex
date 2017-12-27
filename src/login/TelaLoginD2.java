@@ -1,4 +1,5 @@
-package gui;
+package login;
+
 import connections.UsuarioDAO;
 import gui.TelaInicial;
 import java.awt.Font;
@@ -12,6 +13,7 @@ import javax.swing.*;
 public class TelaLoginD2{
     public TelaLoginD2(){
         JFrame telaLogin = new JFrame("Tela de Login");
+        telaLogin.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
         
         JLabel labelLogin = new JLabel("LOGIN");
         labelLogin.setBounds(185,20,150,150);
@@ -32,39 +34,42 @@ public class TelaLoginD2{
         caixaSenha.setBounds(185,215,140,20);      
         
         JButton botaoLogin = new JButton("Entrar");
-        botaoLogin.setBounds(275,280,85,22);        
+        botaoLogin.setBounds(275,280,85,22);
         botaoLogin.addActionListener(new ActionListener(){  
-public void actionPerformed(ActionEvent e){  
-        UsuarioDAO conexao = new UsuarioDAO();
+            public void actionPerformed(ActionEvent e){  
+            UsuarioDAO conexao = new UsuarioDAO();
         
-        String login = caixaLogin.getText();
-        String senha = caixaSenha.getText();
-        Object[] doBanco = new Object[2];
-    try {
-        doBanco=conexao.selecionaFromUsuarioByLogin(login);
-    } catch (SQLException ex) {
-        System.out.println("DEU ERRO1");
-    }
-        if(senha.equals(doBanco[0])){
+            String login = caixaLogin.getText();
+            String senha = caixaSenha.getText();
+            Object[] doBanco = new Object[2];
             try {
-                TelaInicial tela = new TelaInicial();
-                telaLogin.setVisible(false);
+                doBanco=conexao.selecionaFromUsuarioByLogin(login);
             } catch (SQLException ex) {
-                System.out.println("DEU ERRO2");
+                System.out.println("DEU ERRO1");
             }
-        }
-        
-        }  
-    });        
+                if(senha.equals(doBanco[0])){
+                    try {
+                        telaLogin.dispose();
+                        TelaInicial tela = new TelaInicial((int) doBanco[1]);
+                    } catch (SQLException ex) {
+                        Logger.getLogger(TelaLoginD2.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    
+                }else{
+                    System.out.println("senha ou usuário incorretos");
+                }
+
+            }
+        });        
         
         JButton botaoCadastrar = new JButton("Cadastrar ");
         botaoCadastrar.setBounds(80,280,100,22);          
         botaoCadastrar.addActionListener(new ActionListener(){  
-public void actionPerformed(ActionEvent e){  
-        telaLogin.setVisible(false);
-        TelaCadastroD2 t2 = new TelaCadastroD2();
-        }  
-    });        
+            public void actionPerformed(ActionEvent e){  
+            telaLogin.dispose();
+            TelaCadastroD2 t2 = new TelaCadastroD2();
+            }     
+        });        
             
         
         
@@ -84,4 +89,5 @@ public void actionPerformed(ActionEvent e){
     public static void main(String[] args) {
         TelaLoginD2 d = new TelaLoginD2();
     }
+    
 }

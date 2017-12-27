@@ -19,7 +19,7 @@ public class UsuarioDAO {
 		
 		try {
 			Statement stmt = this.con.createStatement();
-			String sqlStatement = String.format("select id,senha from usuarios where login=%s", login);
+			String sqlStatement = String.format("select id,senha from usuarios where login='%s'", login);
 			ResultSet rs = stmt.executeQuery(sqlStatement);
 			
 			while(rs.next()) {

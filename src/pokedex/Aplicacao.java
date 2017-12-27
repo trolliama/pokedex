@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 import gui.StyleInterface;
 import gui.TelaInicial;
+import login.TelaLoginD2;
 
 /**
  *
@@ -19,7 +20,7 @@ public class Aplicacao {
 	
     public static void main(String args[]) throws SQLException{
         new StyleInterface();
-        TelaInicial wn = new TelaInicial();
+        new TelaInicial(1);
         
     }
 }

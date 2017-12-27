@@ -1,4 +1,4 @@
-package gui;
+package login;
 
 import connections.UsuarioDAO;
 import java.awt.Color;
@@ -17,6 +17,7 @@ import javax.swing.JTextField;
 public class TelaCadastroD2{
     public TelaCadastroD2(){
         JFrame telaCadastro = new JFrame("Tela De Cadastro");
+        telaCadastro.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
         
         JLabel labelCadastro = new JLabel("Cadastro");
         labelCadastro.setBounds(170,-30, 300, 100);
@@ -64,7 +65,7 @@ public class TelaCadastroD2{
         botaoVoltar.setBounds(160, 280, 75, 22); 
         botaoVoltar.addActionListener(new ActionListener(){  
 public void actionPerformed(ActionEvent e){
-        telaCadastro.setVisible(false);
+        telaCadastro.dispose();
         TelaLoginD2 t2 = new TelaLoginD2();
 }  
     });        
@@ -85,6 +86,7 @@ public void actionPerformed(ActionEvent e){
     try {
         conexao.cadastraUsuario(usuario, senha, nome, sobrenome, email);
 	System.out.println("cadastrado");
+        telaCadastro.dispose();
         TelaLoginD2 tela2 = new TelaLoginD2();
     } catch (SQLException ex) {
         System.out.println("Deu erro");

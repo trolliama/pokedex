@@ -33,15 +33,17 @@ import pokedex.Imagem;
 public class TelaInicial extends JFrame{
     
 	private Dimension dimension;
-	private int idUsuario = 1;
+	private int idUsuario;
 	private JTabbedPane jtp;
 	private ListaDePokemons pkLista;
 	private ArrayList<PaineisInformacoesDoUsuario> paineis = new ArrayList<PaineisInformacoesDoUsuario>();
 	private GridBagConstraints c;
 	private Paineis painelAll;
 	
-    public TelaInicial() throws SQLException{
+    public TelaInicial(int idUsuario) throws SQLException{
         super("Pokédex");
+        
+        this.idUsuario = idUsuario;
         
         this.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
         this.setSizeJFrame();
@@ -81,7 +83,7 @@ public class TelaInicial extends JFrame{
     }
     
     public void criaPaineis() {
-    	this.painelAll = new Paineis("Pokemos",this.dimension,this.pkLista );
+    	this.painelAll = new Paineis("Pokémons",this.dimension,this.pkLista );
     	
         String[] listaNomes = {"Desejos","Favoritos","Capturados"};
     	for(String nome:listaNomes) {
@@ -110,7 +112,7 @@ public class TelaInicial extends JFrame{
     	}
     	
     	for(PaineisInformacoesDoUsuario painel: paineis) {
-            adicionaStretch(painel);
+            adicionaExtras(painel);
         }
     }
     
@@ -152,7 +154,7 @@ public class TelaInicial extends JFrame{
             painel.acrescentaXY();
         }
         
-        adicionaStretch(painel);
+        adicionaExtras(painel);
     }
     
     public void addOnTabPane() {
@@ -164,19 +166,36 @@ public class TelaInicial extends JFrame{
     	}
     	
     }
+    
+    private void mensagemDoPikachu(PaineisInformacoesDoUsuario painel){
+        
+        JPanel painelBL = new JPanel(new BorderLayout());
+        
+        int width = (int) this.dimension.getWidth()/5;
+        int height = (int) this.dimension.getHeight()/5;
+        
+        GridBagConstraints c = new GridBagConstraints();
+        c.fill = GridBagConstraints.HORIZONTAL;
+        
+        ImageIcon icon;
+        icon = new ImageIcon(new Imagem().setNewImg(true,"PikachuSentado",height, width));
+        String frase = "Desculpe você ainda não tem pokemos adicionados nos "+painel.getNomeAba();
+        
+        JLabel label = new JLabel(frase,icon,JLabel.CENTER);
+        label.setFont(new Font("SansSerif",Font.PLAIN, (int) this.dimension.getWidth()/45));
+        label.setVerticalTextPosition(JLabel.BOTTOM);
+        
+        painelBL.add(label);
+        
+        painel.add(painelBL);
+    }
 
-    private void adicionaStretch(PaineisInformacoesDoUsuario painel) {
+    private void adicionaExtras(PaineisInformacoesDoUsuario painel) {
         
         int width = (int) Math.floor(this.dimension.getWidth()/168);
         
         if(painel.getComponentCount() == 0 ){
-            ImageIcon icon;
-            icon = new ImageIcon(new Imagem().setNewImg(true,"PikachuSentado",200,200));
-            painel.add(new JLabel(icon));
-            
-            JLabel texto = new JLabel("     Desculpe você ainda não tem pokemos adicionados nos "+painel.getNomeAba());
-            texto.setFont(new Font("SansSerif",Font.PLAIN, 20));
-            painel.add(texto);
+            mensagemDoPikachu(painel);
         }
         if (painel.getComponentCount() <= width) {
             System.out.println(painel.getComponentCount());

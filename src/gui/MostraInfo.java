@@ -41,7 +41,7 @@ public class MostraInfo{
                 tela = new JFrame("Informações do Pokemon");
  		Pokemon poke = pokemonLista.getLista().get(id-1);
  		this.pokemonLista=pokemonLista;
- 		
+ 		imagens = new Imagem();
  		System.out.println(poke.getNome());
 		container = new JPanel();
 		container.setPreferredSize(new Dimension(300, 1300));
@@ -84,8 +84,7 @@ public class MostraInfo{
 		labelNumeroDoPokemon.setFont(new Font("Times New Roman", Font.BOLD, 25));
 		labelNumeroDoPokemon.setText(""+idPokemon);
                 
-		imagens.setNewImg(idPokemon, 350, 350);
-		Image imagemDoPokemon = imagens.getNewImg();
+		Image imagemDoPokemon = imagens.setNewImg(idPokemon, 350, 350);
 		JLabel labelImagemDoPokemon = new JLabel(new ImageIcon(imagemDoPokemon));
 		labelImagemDoPokemon.setBounds(40, 50, 350, 350);
 		
@@ -175,7 +174,7 @@ public class MostraInfo{
 		}
 		
 		JLabel labelHabilidadesDoPokemon = new JLabel();
-		labelHabilidadesDoPokemon.setBounds(680,215,300,300);
+		labelHabilidadesDoPokemon.setBounds(655,115,300,300);
 		labelHabilidadesDoPokemon.setText(habilidades);
 		labelHabilidadesDoPokemon.setFont(new Font("Times New Roman", Font.BOLD, 20));
 		
@@ -183,7 +182,7 @@ public class MostraInfo{
 		for(int i=0;i<arraySexo.size();i++) {
 			String sexo = arraySexo.get(i);
                         Image imagemSexo = imagens.setNewImg(sexo, 30, 30);
-			JLabel sexoPokemon = new JLabel((Icon) imagemSexo);
+			JLabel sexoPokemon = new JLabel(new ImageIcon(imagemSexo));
 			sexoPokemon.setBounds(eixoX, 285, 40, 40);
 			container.add(sexoPokemon);
 			eixoX+=35;
@@ -244,7 +243,7 @@ public class MostraInfo{
 			//ImageIcon labelImagemDoPokemon = retornaImagemEvolucao(this.idPokemon);
                         Image labelImagemDoPokemon = imagens.setNewImg(idPokemon, 250, 250);                        
 			
-                        JButton botaoPokemon1 = new JButton((Icon) labelImagemDoPokemon);
+                        JButton botaoPokemon1 = new JButton(new ImageIcon(labelImagemDoPokemon));
                         botaoPokemon1.setBounds(-50, 950, 350, 350);
                         botaoPokemon1.setContentAreaFilled(false);
                         botaoPokemon1.setBorderPainted(false);
@@ -264,7 +263,7 @@ public class MostraInfo{
 			if(idEvolucaoEx2==idEvolucaoEx-1) {
 				//ImageIcon imagemDoPokemon = retornaImagemEvolucao(idEvolucaoEx2-1);
                                 Image labelImagemDoPokemon = imagens.setNewImg(idEvolucaoEx2-1, 250, 250);    
-				JButton botaoPokemon  = new JButton((Icon) labelImagemDoPokemon);
+				JButton botaoPokemon  = new JButton(new ImageIcon(labelImagemDoPokemon));
                                 botaoPokemon.setBounds(-60, 950, 350, 350);					
 				Pokemon pokea = pokemonLista.getLista().get(this.idPokemon-2);
                                 botaoPokemon.addActionListener(new ActionListener(){  
@@ -292,7 +291,7 @@ public class MostraInfo{
 				container.add(botaoPokemon2);
 				//ImageIcon imagemDoPokemon3 = retornaImagemEvolucao(this.idPokemon);
                                 Image imagemDoPokemon3 = imagens.setNewImg(this.idPokemon, 250, 250);
-				JButton botaoPokemon3 = new JButton((Icon) imagemDoPokemon3);
+				JButton botaoPokemon3 = new JButton(new ImageIcon(imagemDoPokemon3));
                                 botaoPokemon3.setBounds(545, 950, 350, 350);
 				botaoPokemon3.addActionListener(new ActionListener(){  
 					public void actionPerformed(ActionEvent e){
@@ -306,7 +305,7 @@ public class MostraInfo{
 			}else {
 				//ImageIcon imagemDoPokemon = retornaImagemEvolucao(idEvolucaoEx-1);
                                 Image imagemDoPokemon = imagens.setNewImg(idEvolucaoEx-1, 250, 250);
-				JButton botaoPokemon = new JButton((Icon) imagemDoPokemon);
+				JButton botaoPokemon = new JButton(new ImageIcon(imagemDoPokemon));
                                 botaoPokemon.setBounds(-60, 950, 350, 350);		
 				
 				int aux = idEvolucaoEx-1;
@@ -321,7 +320,7 @@ public class MostraInfo{
 				container.add(botaoPokemon);
 				//ImageIcon imagemDoPokemon2 = retornaImagemEvolucao(this.idPokemon);
                                 Image imagemDoPokemon2 = imagens.setNewImg(this.idPokemon, 250, 250);
-				JButton botaoPokemon2 = new JButton((Icon) imagemDoPokemon2);
+				JButton botaoPokemon2 = new JButton(new ImageIcon(imagemDoPokemon2));
                                 botaoPokemon2.setBounds(230, 950, 350, 350);
 				
 				botaoPokemon2.addActionListener(new ActionListener(){  
@@ -338,7 +337,7 @@ public class MostraInfo{
 			if(idEvolucao!=0) {
 				//ImageIcon imagemDoPokemon3 = retornaImagemEvolucao(idEvolucao);
                                 Image imagemDoPokemon3 = imagens.setNewImg(idEvolucao, 250, 250);
-				JButton botaoPokemon3 = new JButton((Icon) imagemDoPokemon3);
+				JButton botaoPokemon3 = new JButton(new ImageIcon(imagemDoPokemon3));
                                 botaoPokemon3.setBounds(545, 950, 350, 350);
 				int aux = idEvolucao;
 				botaoPokemon3.addActionListener(new ActionListener(){  
@@ -357,7 +356,7 @@ public class MostraInfo{
 			System.out.println("entrou qui2");
 			//ImageIcon imagemDoPokemon2 = retornaImagemEvolucao(idEvolucao);
                         Image imagemDoPokemon2 = imagens.setNewImg(idEvolucao, 250, 250);
-			JButton botaoPokemon2 = new JButton((Icon) imagemDoPokemon2);
+			JButton botaoPokemon2 = new JButton(new ImageIcon(imagemDoPokemon2));
                         botaoPokemon2.setBounds(230, 950, 350, 350);	
 			
 			int aux = idEvolucao;
@@ -370,10 +369,10 @@ public class MostraInfo{
 			container.add(botaoPokemon2);
 			Pokemon poke3 = pokemonLista.getLista().get(idEvolucao);
 			idEvolucaoEx=poke3.getIdEvolucao();	
-			if(idEvolucaoEx==idEvolucao+1) {
+			if(idEvolucaoEx!=0) {
 				//ImageIcon labelImagemDoPokemon3 = retornaImagemEvolucao(idEvolucaoEx);
                                 Image imagemDoPokemon3 = imagens.setNewImg(idEvolucaoEx, 250, 250);
-				JButton botaoPokemon3 = new JButton((Icon) imagemDoPokemon3);
+				JButton botaoPokemon3 = new JButton(new ImageIcon(imagemDoPokemon3));
                                 botaoPokemon3.setBounds(545, 950, 350, 350);	
 				
 				int aux2 = idEvolucaoEx;
