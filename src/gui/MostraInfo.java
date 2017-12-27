@@ -92,12 +92,13 @@ public class MostraInfo{
 		descricaoPokemon.setBounds(470,50,300,120);
 		descricaoPokemon.setText(descricaoDoPokemon);
 		descricaoPokemon.setFont(new Font("Serial", Font.BOLD, 14));
+                descricaoPokemon.setLineWrap(true);
 		descricaoPokemon.setOpaque(false);
 		descricaoPokemon.setEditable(false);
 		
 		JLabel labelTipo = new JLabel();
 		labelTipo.setBounds(590,252,100,100);
-		labelTipo.setText("Tipo");
+		labelTipo.setText("Tipo:");
 		labelTipo.setFont(new Font("Times New Roman", Font.BOLD, 26));
 		
 		int eixoX=520;
@@ -113,7 +114,7 @@ public class MostraInfo{
 		
 		JLabel labelFraquezas = new JLabel();
 		labelFraquezas.setBounds(560,325,200,100);
-		labelFraquezas.setText("Fraquezas");
+		labelFraquezas.setText("Fraquezas:");
 		labelFraquezas.setFont(new Font("Times New Roman", Font.BOLD, 26));
 		
 		eixoX=390;
@@ -134,7 +135,7 @@ public class MostraInfo{
 		
 		JLabel labelAltura = new JLabel();
 		labelAltura.setBounds(470,135,100,100);
-		labelAltura.setText("Altura");
+		labelAltura.setText("Altura:");
 		labelAltura.setFont(new Font("Times New Roman", Font.BOLD, 20));
 
 		JLabel labelAlturaDoPokemon = new JLabel();
@@ -144,7 +145,7 @@ public class MostraInfo{
 		
 		JLabel labelCategoria = new JLabel();
 		labelCategoria.setBounds(680,135,150,100);
-		labelCategoria.setText("Categoria");
+		labelCategoria.setText("Categoria:");
 		labelCategoria.setFont(new Font("Times New Roman", Font.BOLD, 20));		
 
 		JLabel labelCategoriaDoPokemon = new JLabel();
@@ -154,7 +155,7 @@ public class MostraInfo{
 
 		JLabel labelPeso = new JLabel();
 		labelPeso.setBounds(470,190,100,100);
-		labelPeso.setText("Peso");
+		labelPeso.setText("Peso:");
 		labelPeso.setFont(new Font("Times New Roman", Font.BOLD, 20));		
 
 		JLabel labelPesoDoPokemon = new JLabel();
@@ -164,18 +165,18 @@ public class MostraInfo{
 		
 		JLabel labelHabilidades = new JLabel();
 		labelHabilidades.setBounds(680,190,150,100);
-		labelHabilidades.setText("Habilidades");
+		labelHabilidades.setText("Habilidades:");
 		labelHabilidades.setFont(new Font("Times New Roman", Font.BOLD, 20));				
 		
 		
-		String habilidades="";
+		String habilidades="<html>";
 		for(String habilidade:arrayHabilidades) {
-			habilidades = habilidades + habilidade + "\n";
+			habilidades =habilidades + habilidade +  "<br>";
 		}
 		
 		JLabel labelHabilidadesDoPokemon = new JLabel();
-		labelHabilidadesDoPokemon.setBounds(655,115,300,300);
-		labelHabilidadesDoPokemon.setText(habilidades);
+		labelHabilidadesDoPokemon.setBounds(665,123,300,300);
+		labelHabilidadesDoPokemon.setText(habilidades+"</html>");
 		labelHabilidadesDoPokemon.setFont(new Font("Times New Roman", Font.BOLD, 20));
 		
 		eixoX=460;
@@ -204,10 +205,15 @@ public class MostraInfo{
 	    ChartPanel grafico = new ChartPanel(chart);
 	    grafico.setBounds(70,470,700,400);
 	    
+            JLabel labelEvolucoes = new JLabel("EVOLUÇÕES");
+            labelEvolucoes.setBounds(350,790,300,300);
+            labelEvolucoes.setFont(new Font("Times New Roman", Font.BOLD, 20));	
+            
 	    JScrollPane jsp = new JScrollPane(container);
 	   
 	    
 	    tela.getContentPane().add(jsp);
+            container.add(labelEvolucoes);
 	    container.add(grafico);	            	         
 	    container.add(labelHabilidadesDoPokemon);
 	    container.add(labelHabilidades);
@@ -226,7 +232,7 @@ public class MostraInfo{
 		container.add(labelNomeDoPokemon);
 		boolean desativa = this.mostraEvolucoes(idEvolucao);
 		
-		tela.setSize(870,800);
+		tela.setSize(890,800);
 		tela.setLocation(250,0);		
 		tela.setVisible(true);
 	}
@@ -234,8 +240,9 @@ public class MostraInfo{
 		int idEvolucaoEx=1;
 		Pokemon poke2 = new Pokemon();
 		if(this.idPokemon!=1) {
-			poke2 = pokemonLista.getLista().get(this.idPokemon-1);
+			poke2 = pokemonLista.getLista().get(this.idPokemon-2);
 			idEvolucaoEx=poke2.getIdEvolucao();
+                        System.out.println("0-------------------"+poke2.getNome());
 		}
 		System.out.println(idEvolucaoEx);
 		if(this.idPokemon==1 || idEvolucaoEx!=this.idPokemon) {
@@ -260,7 +267,10 @@ public class MostraInfo{
 			int idEvolucaoEx2=2;
 			Pokemon poke3 = pokemonLista.getLista().get(this.idPokemon-2);
 			idEvolucaoEx2=poke3.getIdEvolucao();
+                        
+                        System.out.println("eeeeeeee"+poke3.getNome());
 			if(idEvolucaoEx2==idEvolucaoEx-1) {
+                            System.out.println("djaoidsiopadsjiodasjiodsaiodajiodsajiodsa");
 				//ImageIcon imagemDoPokemon = retornaImagemEvolucao(idEvolucaoEx2-1);
                                 Image labelImagemDoPokemon = imagens.setNewImg(idEvolucaoEx2-1, 250, 250);    
 				JButton botaoPokemon  = new JButton(new ImageIcon(labelImagemDoPokemon));
@@ -366,8 +376,10 @@ public class MostraInfo{
                                     MostraInfo t2 = new MostraInfo(aux,pokemonLista);  
 		        }  
 		    });
+                        botaoPokemon2.setContentAreaFilled(false);
+                        botaoPokemon2.setBorderPainted(false);
 			container.add(botaoPokemon2);
-			Pokemon poke3 = pokemonLista.getLista().get(idEvolucao);
+			Pokemon poke3 = pokemonLista.getLista().get(idEvolucao-1);
 			idEvolucaoEx=poke3.getIdEvolucao();	
 			if(idEvolucaoEx!=0) {
 				//ImageIcon labelImagemDoPokemon3 = retornaImagemEvolucao(idEvolucaoEx);
