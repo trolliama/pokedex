@@ -1,3 +1,5 @@
+/* Código feito pelo meu colega para o projeto de fim de ano */
+
 package gui;
 
 import javax.swing.*;
@@ -17,7 +19,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.Arrays;
 import pokedex.Imagem;
 
 public class MostraInfo{

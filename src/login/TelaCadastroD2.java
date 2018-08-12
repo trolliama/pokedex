@@ -1,13 +1,10 @@
 package login;
 
 import connections.UsuarioDAO;
-import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.*;
 import javax.swing.JLabel;
@@ -63,37 +60,39 @@ public class TelaCadastroD2{
         JButton botaoVoltar = new JButton("Voltar");
         botaoVoltar.setBounds(160, 280, 75, 22); 
         botaoVoltar.addActionListener(new ActionListener(){  
-public void actionPerformed(ActionEvent e){
-        telaCadastro.setVisible(false);
-        TelaLoginD2 t2 = new TelaLoginD2();
-}  
-    });        
-        
-        
+			public void actionPerformed(ActionEvent e){
+			        telaCadastro.setVisible(false);
+			        TelaLoginD2 t2 = new TelaLoginD2();
+			}  
+	    });        
+	        
+	        
         JButton botaoCadastrar = new JButton("Cadastrar");
         botaoCadastrar.setBounds(260, 280, 100, 22);
+        
         botaoCadastrar.addActionListener(new ActionListener(){  
-public void actionPerformed(ActionEvent e){
-        UsuarioDAO conexao = new UsuarioDAO();
-        
-        String usuario = caixaUsuario.getText();
-        String senha = caixaSenha.getText();
-        String nome = caixaNome.getText();
-        String sobrenome = caixaSobrenome.getName();
-        String email = caixaEmail.getText();
-        
-    try {
-        conexao.cadastraUsuario(usuario, senha, nome, sobrenome, email);
-	System.out.println("cadastrado");
-        TelaLoginD2 tela2 = new TelaLoginD2();
-    } catch (SQLException ex) {
-        System.out.println("Deu erro");
-    }
-        
-}  
-    });        
-        
-        
+			public void actionPerformed(ActionEvent e){
+		        UsuarioDAO conexao = new UsuarioDAO();
+		        
+		        String usuario = caixaUsuario.getText();
+		        @SuppressWarnings("deprecation")
+				String senha = caixaSenha.getText();
+		        String nome = caixaNome.getText();
+		        String sobrenome = caixaSobrenome.getName();
+		        String email = caixaEmail.getText();
+			        
+			    try {
+			        conexao.cadastraUsuario(usuario, senha, nome, sobrenome, email);
+				System.out.println("cadastrado");
+			        new TelaLoginD2();
+			    } catch (SQLException ex) {
+			        System.out.println("Deu erro");
+			    }
+			    telaCadastro.dispose();
+			}  
+        });        
+	        
+	        
         telaCadastro.add(botaoVoltar);
         telaCadastro.add(botaoCadastrar);
         telaCadastro.add(labelEmail);
@@ -111,6 +110,6 @@ public void actionPerformed(ActionEvent e){
         telaCadastro.setSize(500,500);
         telaCadastro.setLocation(400,100);
         telaCadastro.setVisible(true);
-       
-    }
+	       
+	}
 }

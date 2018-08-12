@@ -1,12 +1,8 @@
 package gui;
 
-import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.GridBagConstraints;
 import java.awt.Image;
 import java.sql.SQLException;
-
-import javax.swing.JPanel;
 
 import pokedex.Imagem;
 import pokedex.ListaDePokemons;

@@ -4,10 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.Image;
-import java.awt.Insets;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 
 import javax.swing.JPanel;

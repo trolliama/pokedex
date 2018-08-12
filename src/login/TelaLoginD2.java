@@ -5,8 +5,6 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.*;
 
 public class TelaLoginD2{
@@ -32,40 +30,44 @@ public class TelaLoginD2{
         caixaSenha.setBounds(185,215,180,20);      
         
         JButton botaoLogin = new JButton("Entrar");
-        botaoLogin.setBounds(275,280,85,22);        
-botaoLogin.addActionListener(new ActionListener(){  
-public void actionPerformed(ActionEvent e){  
-        UsuarioDAO conexao = new UsuarioDAO();
+        botaoLogin.setBounds(275,280,85,22);  
         
-        String login = caixaLogin.getText();
-        String senha = caixaSenha.getText();
-        Object[] doBanco = new Object[2];
-    try {
-        doBanco=conexao.selecionaFromUsuarioByLogin(login);
-    } catch (SQLException ex) {
-        System.out.println("DEU ERRO1");
-    }
-        if(senha.equals(doBanco[0])){
-            try {
-            	telaLogin.dispose();
-                TelaInicial tela = new TelaInicial((int) doBanco[1]);
-                
-            } catch (SQLException ex) {
-                System.out.println("DEU ERRO2");
-            }
-        }
-        
-        }  
-    });        
+        botaoLogin.addActionListener(new ActionListener(){  
+			public void actionPerformed(ActionEvent e){  
+		        UsuarioDAO conexao = new UsuarioDAO();
+		        
+		        String login = caixaLogin.getText();
+		        @SuppressWarnings("deprecation")
+				String senha = caixaSenha.getText();
+		        Object[] doBanco = new Object[2];
+		        
+			    try {
+			        doBanco=conexao.selecionaFromUsuarioByLogin(login);
+			    } catch (SQLException ex) {
+			        System.out.println("DEU ERRO1");
+			    }
+		        if(senha.equals(doBanco[0])){
+		            try {
+		            	telaLogin.dispose();
+		                new TelaInicial((int) doBanco[1]);
+		                
+		            } catch (SQLException ex) {
+		                System.out.println("DEU ERRO2");
+		            }
+		        }
+		        
+		    }  
+        });        
         
         JButton botaoCadastrar = new JButton("Cadastrar ");
-        botaoCadastrar.setBounds(80,280,100,22);          
+        botaoCadastrar.setBounds(80,280,100,22);  
+        
         botaoCadastrar.addActionListener(new ActionListener(){  
-public void actionPerformed(ActionEvent e){  
-        telaLogin.dispose();
-        TelaCadastroD2 t2 = new TelaCadastroD2();
-        }  
-    });        
+			public void actionPerformed(ActionEvent e){  
+		        telaLogin.dispose();
+		        new TelaCadastroD2();
+			}  
+		});        
             
         
         
@@ -81,9 +83,6 @@ public void actionPerformed(ActionEvent e){
         telaLogin.setSize(500,500);
         telaLogin.setLocation(400,100);
         telaLogin.setVisible(true);
-    }
-    public static void main(String[] args) {
-        TelaLoginD2 d = new TelaLoginD2();
     }
     
 }

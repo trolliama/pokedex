@@ -6,10 +6,7 @@
 package pokedex;
 import java.sql.*;
 
-import java.util.ArrayList;
-
 import gui.StyleInterface;
-import gui.TelaInicial;
 import login.TelaLoginD2;
 
 /**
